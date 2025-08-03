@@ -6,3 +6,15 @@
   --color-error: #ff4242;
   --color-highlight: #ffae03;
 }
+
+@layer components {
+  .button {
+    padding: --spacing(2);
+    border-radius: var(--radius-lg);
+    display: block;
+    color: var(--color-baby);
+    &:is(:focus, :hover) {
+      cursor: pointer;
+    }
+  }
+}

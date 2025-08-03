@@ -18,8 +18,7 @@ export function LoginPage() {
             <input type="password" name="password" id="password" 
             className="bg-slate-900 rounded-lg p-2 outline-slate-300"/>
         </div>
-            <button type="submit" className="bg-highlight text-white w-[200px]
-            rounded-lg text-center p-2 cursor-pointer hover:bg-highlight/85 mx-auto block">Login</button>
+            <button type="submit" className="button bg-highlight text-white w-[200px] hover:bg-highlight/85 mx-auto">Login</button>
         </form>
         
     </main>

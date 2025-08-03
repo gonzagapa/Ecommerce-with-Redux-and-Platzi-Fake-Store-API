@@ -9,7 +9,7 @@ export function AppRoutes() {
 
       <Route element={<ThemePage/>}>
           <Route path="/" element={<ProductRoutes/>}/>
-          <Route path="/auth" element={<AuthRoutes/>}/>
+          <Route path="/auth/*" element={<AuthRoutes/>}/>
       </Route>
 
     </Routes>

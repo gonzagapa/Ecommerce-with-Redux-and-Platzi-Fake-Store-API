@@ -2,4 +2,7 @@
 
 @theme {
   --font-sans: "Open Sans", sans-serif;
+  --color-baby: #f7f9f7;
+  --color-error: #ff4242;
+  --color-highlight: #ffae03;
 }

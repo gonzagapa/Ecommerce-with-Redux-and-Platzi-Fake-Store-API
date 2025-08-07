@@ -6,17 +6,21 @@ import { ecommerceApi } from '../../app/api/EcommerceApi';
 export const EcommerceApi = createApi({
   reducerPath: 'ecommerceApi',
   baseQuery: fetchBaseQuery({baseUrl:ecommerceApi.getUri()}),
+
   endpoints: (builder) => ({
-    postLoginUser: builder.mutation<LoginResponse,LoginArg>({
+
+    loginUser: builder.mutation<LoginResponse,LoginArg>({
       query: ({email,password})=>(
-        {url:"/login",
+        {
+        url:"/auth/login",
         body:{
         email:email,
         password:password
-      }
+      },
+      method:"POST"
     })
     }),
   }),
 })
 
-export const {usePostLoginUserMutation} = EcommerceApi
+export const {useLoginUserMutation} = EcommerceApi

@@ -17,16 +17,21 @@ const initialState:AuthState = {
     name:'',
     avatar:''
 }
+type AuthToken = Pick<AuthState,"access_token"|"refresh_token">;
+
 
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logIn: (state, action: PayloadAction<AuthState>)=>{
-        const {email,name,avatar,access_token,refresh_token,} = action.payload;
+    setProfileInfo: (state, action: PayloadAction<AuthState>)=>{
+        const {email,name,avatar} = action.payload;
         state.email = email;
         state.name = name;
         state.avatar = avatar;
+    },
+    setTokens: (state,action:PayloadAction<AuthToken>)=>{
+      const {access_token, refresh_token} = action.payload;
         state.access_token = access_token;
         state.refresh_token = refresh_token;
     },
@@ -41,4 +46,4 @@ export const authSlice = createSlice({
 });
 export const selectAuth = (state: RootState) => state.auth
 
-export const {logIn, logOut} = authSlice.actions
+export const {setTokens, logOut, setProfileInfo} = authSlice.actions

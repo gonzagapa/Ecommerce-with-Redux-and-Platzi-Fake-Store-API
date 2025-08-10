@@ -1,14 +1,17 @@
 import { LogOut } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { logOut } from '../../auth/store/authSlice';
+import { useNavigate } from 'react-router';
 
 export function Navbar() {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogOut = ()=>{
     console.log("Logout");
     dispatch(logOut());
+    navigate("/auth/login");
   }
 
   return (

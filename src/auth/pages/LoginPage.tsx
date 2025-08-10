@@ -19,7 +19,6 @@ export function LoginPage() {
 
   const handleSubmit = async(e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
-    //console.log({email,password});
     const payload = await loginUser({email,password}).unwrap();
     //console.log(payload);
 

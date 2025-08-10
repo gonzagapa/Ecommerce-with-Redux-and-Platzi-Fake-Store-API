@@ -3,24 +3,29 @@ import { useLoginUserMutation } from "../services/authService";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setTokens } from "../store/authSlice";
+import { useForm } from "../hooks";
 
+type FormValues= {
+  email:string,
+  password:string
+}
+
+const formValues:FormValues = {
+  email:'',
+  password:''
+}
 
 export function LoginPage() {
 
-  const [email, setEmail] = useState("");
-  const [password,setPassword] = useState("");
-  
+  const {email,password, onInputChange} = useForm<FormValues>(formValues);  
   const [loginUser] = useLoginUserMutation();
-  
-  
   let navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleSubmit = async(e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
+    //console.log({password,email});
     const payload = await loginUser({email,password}).unwrap();
-    //console.log(payload);
 
     if(payload){
       navigate("/");
@@ -41,7 +46,7 @@ export function LoginPage() {
             className="capitalize font-semibold text-xl">email addres:</label>
             <input type="email" name="email" id="email" 
             value={email}
-            onChange={(e)=> setEmail(e.target.value)}
+            onChange={(e)=> onInputChange(e)}
             className="bg-slate-900 rounded-lg p-2 outline-slate-300"/>
         </div>
         <div className="flex flex-col gap-2 mb-5">
@@ -49,7 +54,7 @@ export function LoginPage() {
             className="capitalize font-semibold text-xl">password:</label>
             <input type="password" name="password" id="password" 
             value={password}
-            onChange={(e)=> setPassword(e.target.value)}
+            onChange={(e)=> onInputChange(e)}
             className="bg-slate-900 rounded-lg p-2 outline-slate-300"/>
         </div>
             <button type="submit" className="button bg-highlight text-white w-[200px] hover:bg-highlight/85 mx-auto">Login</button>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setTokens } from "../store/authSlice";
 import { useForm } from "../hooks";
+import { LoadingSpinner } from "../../shared/components";
 
 type FormValues= {
   email:string,
@@ -18,20 +19,23 @@ const formValues:FormValues = {
 export function LoginPage() {
 
   const {email,password, onInputChange} = useForm<FormValues>(formValues);  
-  const [loginUser] = useLoginUserMutation();
+  const [loginUser,{isLoading}] = useLoginUserMutation();
+
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async(e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
     //console.log({password,email});
-    const payload = await loginUser({email,password}).unwrap();
-
-    if(payload){
-      navigate("/");
-      dispatch(setTokens(payload));
+    try{
+      const payload = await loginUser({email,password}).unwrap();
+  
+      if(payload){
+        navigate("/");
+        dispatch(setTokens(payload));
+      }
     }
-    else{
+    catch{
       console.error("Usuario no existente");
     }
   }
@@ -57,7 +61,11 @@ export function LoginPage() {
             onChange={(e)=> onInputChange(e)}
             className="bg-slate-900 rounded-lg p-2 outline-slate-300"/>
         </div>
-            <button type="submit" className="button bg-highlight text-white w-[200px] hover:bg-highlight/85 mx-auto">Login</button>
+          <button disabled={isLoading} type="submit" 
+            className={`button ${isLoading ? "bg-highlight/85": "bg-highlight" } flex justify-center text-white w-[200px] hover:bg-highlight/85 mx-auto`}>
+              {isLoading && <LoadingSpinner size="w-6 h-6"color="border-white" thickness="border-4"/>}
+              {!isLoading &&  <span className="grow text-center">Login</span>}
+            </button>
         </form>
         
     </main>

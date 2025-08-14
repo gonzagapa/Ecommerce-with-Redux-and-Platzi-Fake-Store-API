@@ -1,10 +1,11 @@
-import { useState, type FormEvent } from "react"
+import { type FormEvent } from "react"
 import { useLoginUserMutation } from "../services/authService";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { setTokens } from "../store/authSlice";
 import { useForm } from "../hooks";
 import { LoadingSpinner } from "../../shared/components";
+import { Modal } from "../../shared/components/Modal";
 
 type FormValues= {
   email:string,
@@ -19,30 +20,28 @@ const formValues:FormValues = {
 export function LoginPage() {
 
   const {email,password, onInputChange} = useForm<FormValues>(formValues);  
-  const [loginUser,{isLoading}] = useLoginUserMutation();
+  const [loginUser,{isLoading, isError}] = useLoginUserMutation();
 
   let navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleSubmit = async(e:FormEvent<HTMLFormElement>)=>{
+  const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
-    //console.log({password,email});
-    try{
-      const payload = await loginUser({email,password}).unwrap();
-  
-      if(payload){
+      loginUser({email,password}).unwrap()
+      .then((payload)=>{
         navigate("/");
         dispatch(setTokens(payload));
-      }
-    }
-    catch{
-      console.error("Usuario no existente");
-    }
+      })
+      .catch((error)=>{
+        console.log(isError);
+      });
+
   }
 
   return (
     <main className="dark:bg-slate-800 border-2 rounded-lg border-baby
     min-w-sm p-3">
+        { isError && <Modal title="User doesnt exists" text="Try again" icon="error"/> }
         <h2 className="text-center text-5xl mb-5 text-highlight font-bold">Login</h2>
         <form action="" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-2 mb-5">

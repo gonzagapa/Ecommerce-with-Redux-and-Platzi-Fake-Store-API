@@ -32,7 +32,9 @@ export const EcommerceApi = createApi({
         password:password
       },
       method:"POST",
-      
+      transformErrorResponse: (
+        response: { status: string | number },
+      ) => response.status,
     })
     }),
     userProfileInfo: builder.query<UserProfileResponse,UserProfileArg>({

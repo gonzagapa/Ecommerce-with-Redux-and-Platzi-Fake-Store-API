@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { LoginArg, LoginResponse, UserProfileArg, UserProfileResponse } from './types';
+import type { LoginArg,UserProfileArg, UserProfileResponse, UserTokens } from './types';
 import { ecommerceApi } from '../../app/api/EcommerceApi';
 import type { RootState } from '../../app';
 
@@ -23,7 +23,7 @@ export const EcommerceApi = createApi({
 
   endpoints: (builder) => ({
 
-    loginUser: builder.mutation<LoginResponse,LoginArg>({
+    loginUser: builder.mutation<UserTokens,LoginArg>({
       query: ({email,password})=>(
         {
         url:"/auth/login",

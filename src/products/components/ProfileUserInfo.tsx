@@ -15,7 +15,6 @@ export function ProfileUserInfo({children}:Props) {
     const {data:user} =useUserProfileInfoQuery({access_token});
     
     if(user){
-          //console.log(hasAccess);
         console.log(user);
         dispatch(setProfileInfo(user))
     }

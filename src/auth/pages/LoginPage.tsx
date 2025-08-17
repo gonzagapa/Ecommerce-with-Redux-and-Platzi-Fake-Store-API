@@ -1,9 +1,7 @@
 import { type FormEvent } from "react"
 import { useLoginUserMutation } from "../services/authService";
 import { useNavigate } from "react-router";
-import { useDispatch } from "react-redux";
-import { setTokens } from "../store/authSlice";
-import { useForm } from "../hooks";
+import { useForm, useTokens } from "../hooks";
 import { LoadingSpinner } from "../../shared/components";
 import { Modal } from "../../shared/components/Modal";
 
@@ -23,16 +21,16 @@ export function LoginPage() {
   const [loginUser,{isLoading, isError}] = useLoginUserMutation();
 
   let navigate = useNavigate();
-  const dispatch = useDispatch();
+  const {saveInLocalStorage} = useTokens();
 
   const handleSubmit = (e:FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
       loginUser({email,password}).unwrap()
       .then((payload)=>{
         navigate("/");
-        dispatch(setTokens(payload));
+        saveInLocalStorage(payload);
       })
-      .catch((error)=>{
+      .catch(()=>{
         console.log(isError);
       });
 

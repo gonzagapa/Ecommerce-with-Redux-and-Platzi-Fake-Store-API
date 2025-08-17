@@ -17,13 +17,14 @@ export const useTokens = ()=>{
     }
 
 
-    const retrieveTokensFromStorage = ()=>{
+    const retrieveTokensFromStorage = ():string|null=>{
         const tokens = retrieveTokensInStorage();
         if(tokens == null) return null;
 
         //if in the storage we have tokens, save them in the store
         dispatch(setTokens(tokens));
-        console.log(tokens);
+         const {access_token} = tokens;
+        return access_token
     }
 
     return {

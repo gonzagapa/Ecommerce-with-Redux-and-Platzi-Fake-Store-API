@@ -1,20 +1,19 @@
-import {useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
-import type { RootState } from "../../app";
 import { ProfileUserInfo } from "../components/ProfileUserInfo";
+import { useTokens } from "../../auth/hooks";
 
 
 export function PrivatePages() {
-    const {access_token} = useSelector((s:RootState)=> s.auth);
+    const {retrieveTokensFromStorage} = useTokens();
+    //const {access_token} = useSelector((s:RootState)=> s.auth);
+    const access_token = retrieveTokensFromStorage();
     
-    const hasAccess = access_token.length >1;
-    
-    if(!hasAccess){
+    if(!access_token){
       return <Navigate to={"/auth/login"}/>
     }
 
   return (
-    <ProfileUserInfo>
+    <ProfileUserInfo access_token={access_token}>
         <Outlet/>
     </ProfileUserInfo>
   )

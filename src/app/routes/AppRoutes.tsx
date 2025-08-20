@@ -6,12 +6,11 @@ export function AppRoutes() {
   return (
     <BrowserRouter>
     <Routes>
-
       <Route element={<LayoutPage/>}>
-          <Route path="/" element={<ProductRoutes/>}/>
+          <Route path="/*" element={<ProductRoutes/>}/>
           <Route path="/auth/*" element={<AuthRoutes/>}/>
-      </Route>
 
+      </Route>
     </Routes>
     </BrowserRouter>
   )

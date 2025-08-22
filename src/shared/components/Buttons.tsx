@@ -13,7 +13,7 @@ interface SpinnerProps extends ButtonProps{
 export const Button = ({textButton, icon}:ButtonProps)=>{
     return (
         <button
-        className="bg-highlight flex justify-center text-white w-[200px] hover:bg-highlight/85 mx-auto p-2 gap-2 rounded-md">
+        className="bg-highlight flex justify-center text-white w-[200px] hover:bg-highlight/85 mx-auto p-2 gap-2 rounded-md ">
             {icon}
             {textButton}
         </button>

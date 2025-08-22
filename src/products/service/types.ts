@@ -16,6 +16,6 @@ export interface Category {
 }
 
 export interface PaginationAttributes {
-    offset:string;
-    limit:string;
+    offset:number;
+    limit:number;
 }

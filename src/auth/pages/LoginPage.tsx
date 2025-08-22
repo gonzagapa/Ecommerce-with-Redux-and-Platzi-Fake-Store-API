@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import { useForm, useTokens } from "../hooks";
 import { LoadingSpinner } from "../../shared/components";
 import { Modal } from "../../shared/components/Modal";
+import { ButtonSpinner } from "../../shared/components/Buttons";
 
 type FormValues= {
   email:string,
@@ -58,11 +59,7 @@ export function LoginPage() {
             onChange={(e)=> onInputChange(e)}
             className="bg-slate-900 rounded-lg p-2 outline-slate-300"/>
         </div>
-          <button disabled={isLoading} type="submit" 
-            className={`button ${isLoading ? "bg-highlight/85": "bg-highlight" } flex justify-center text-white w-[200px] hover:bg-highlight/85 mx-auto`}>
-              {isLoading && <LoadingSpinner size="w-6 h-6"color="border-white" thickness="border-4"/>}
-              {!isLoading &&  <span className="grow text-center">Login</span>}
-            </button>
+          <ButtonSpinner isLoading={isLoading} textButton="Login"/>
         </form>
         
     </main>

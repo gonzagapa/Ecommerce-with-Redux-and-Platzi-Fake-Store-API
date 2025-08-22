@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import type { RootState } from '../../app';
 import { ecommerceApi } from '../../app/api/EcommerceApi';
-import type { ProductResponse } from './types';
+import type { PaginationAttributes, ProductResponse } from './types';
 
 
 export const ProductEcommerceApi = createApi({
@@ -20,10 +20,10 @@ export const ProductEcommerceApi = createApi({
         // timeout:10000
     }),
     endpoints: (builder) =>({
-        getAllProducts:builder.query<ProductResponse[],void>({
-            query:()=>(
+        getAllProducts:builder.query<ProductResponse[],PaginationAttributes>({
+            query:({offset = 0,limit = 10})=>(
                 {
-                    url:"/products",
+                    url:`/products?offset=${offset}&limit=${limit}`,
                     method:"GET"
                 }
             )

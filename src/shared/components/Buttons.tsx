@@ -10,10 +10,11 @@ interface SpinnerProps extends ButtonProps{
     isLoading?:boolean,
 }
 
-export const Button = ({textButton, icon}:ButtonProps)=>{
+export const Button = ({textButton, icon,onAction}:ButtonProps)=>{
     return (
         <button
-        className="bg-highlight flex justify-center text-white w-[200px] hover:bg-highlight/85 mx-auto p-2 gap-2 rounded-md ">
+        onClick={onAction}
+        className="bg-highlight flex cursor-pointer justify-center text-white w-[200px] hover:bg-highlight/85 mx-auto p-2 gap-2 rounded-md ">
             {icon}
             {textButton}
         </button>

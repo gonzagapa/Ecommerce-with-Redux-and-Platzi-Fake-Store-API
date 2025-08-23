@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { useGetAllProductsQuery } from "../service/productService"
-import type { PaginationAttributes } from "../service/types";
 import ProductItem from "./ProductItem";
 import { LoadingSpinner } from "../../shared/components";
+import { usePaginationContext } from "../hooks/usePaginationContext";
 
 
 export function ProductList() {
 
-  const [pagination] = useState<PaginationAttributes>({offset:0,limit:10})
+  const {pagination:initialValues} = usePaginationContext();
 
-  const {data:products, isLoading,isError} = useGetAllProductsQuery(pagination);
-  //console.log(products);
+  const {data:products, isLoading,isError} = useGetAllProductsQuery(initialValues);
+  console.log(products);
 
   if(isLoading) {
     return (

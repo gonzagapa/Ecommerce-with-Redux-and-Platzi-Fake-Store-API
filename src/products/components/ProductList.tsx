@@ -1,21 +1,19 @@
 import { useGetAllProductsQuery } from "../service/productService"
 import ProductItem from "./ProductItem";
-import { LoadingSpinner } from "../../shared/components";
 import { usePaginationContext } from "../hooks/usePaginationContext";
+import { LoadingLayout } from "../layout/LoadingLayout";
 
 
 export function ProductList() {
 
   const {pagination:initialValues} = usePaginationContext();
 
-  const {data:products, isLoading,isError} = useGetAllProductsQuery(initialValues);
+  const {data:products, isFetching} = useGetAllProductsQuery(initialValues);
   console.log(products);
 
-  if(isLoading) {
+  if(isFetching) {
     return (
-      <div className="grid content-center">
-        <LoadingSpinner color="border-highlight" size="w-8 h-8" thickness="border-4"/>
-      </div>
+      <LoadingLayout/>
   )
   }
   return (

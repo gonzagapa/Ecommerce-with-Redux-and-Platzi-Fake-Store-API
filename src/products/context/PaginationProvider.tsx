@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { PaginationContext, type PaginationType } from "./PaginationContext"
 
 type Props = {
@@ -7,9 +7,10 @@ type Props = {
 
 export const PaginationProvider = ({children}:Props)=>{
     const [pagination,setPagination] = useState<PaginationType>({offset:0,limit:15})
+    const refElement = useRef<HTMLElement>(null);
 
     return (
-        <PaginationContext.Provider value={{pagination,setPagination}}>
+        <PaginationContext.Provider value={{pagination,setPagination,refElement}}>
             {children}
         </PaginationContext.Provider>
     )

@@ -8,7 +8,6 @@ export function HomePage() {
           <FormInputSearch/>
           <PaginationProvider>
             <ProductList/>
-            {/* !fix :Fix layout shift in paginationButtons */}
             <PaginationButtons/>
           </PaginationProvider>
     </main>

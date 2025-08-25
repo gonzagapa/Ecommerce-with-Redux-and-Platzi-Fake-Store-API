@@ -8,6 +8,7 @@ export type PaginationType = {
 export type PaginationContextType = {
     pagination:PaginationType
     setPagination: React.Dispatch<React.SetStateAction<PaginationType>>
+    refElement:React.RefObject<HTMLElement|null>
 }
 
 export const PaginationContext = createContext<PaginationContextType|null>(null);

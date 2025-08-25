@@ -1,7 +1,6 @@
 import { useGetAllProductsQuery } from "../service/productService"
 import ProductItem from "./ProductItem";
 import { usePaginationContext } from "../hooks/usePaginationContext";
-import { LoadingLayout } from "../layout/LoadingLayout";
 import { NoProductsExistsLayout } from "../layout/NoProductsExistsLayout";
 import { ProductShadowList } from "./ProductShadowList";
 
@@ -14,10 +13,8 @@ export function ProductList() {
   console.log(products);
 
   if(isFetching) {
-      return (<>
-        <LoadingLayout/>
-        <ProductShadowList/>
-        </>
+      return (
+          <ProductShadowList/>
       )
     }
   

@@ -4,8 +4,8 @@ import { ecommerceApi } from '../../app/api/EcommerceApi';
 import type { RootState } from '../../app';
 
 
-export const EcommerceApi = createApi({
-  reducerPath: 'ecommerceApi',
+export const AuthEcommerceApi = createApi({
+  reducerPath: 'AuthEcommerceApi',
   baseQuery: fetchBaseQuery({
     baseUrl:ecommerceApi.getUri(), 
 
@@ -49,4 +49,4 @@ export const EcommerceApi = createApi({
   }),
 })
 
-export const {useLoginUserMutation, useUserProfileInfoQuery} = EcommerceApi
+export const {useLoginUserMutation, useUserProfileInfoQuery} = AuthEcommerceApi

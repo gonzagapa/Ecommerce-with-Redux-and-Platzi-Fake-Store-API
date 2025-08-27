@@ -1,15 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { authSlice } from '../auth/store/authSlice'
-import { EcommerceApi } from '../auth/services/authService'
+import { AuthEcommerceApi } from '../auth/services/authService'
+import { ProductEcommerceApi } from '../products/service/productService'
 // ...
 
 export const store = configureStore({
   reducer: {
     auth:authSlice.reducer, 
 
-    [EcommerceApi.reducerPath]: EcommerceApi.reducer
+    [AuthEcommerceApi.reducerPath]: AuthEcommerceApi.reducer,
+    [ProductEcommerceApi.reducerPath]:ProductEcommerceApi.reducer
   },
-   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(EcommerceApi.middleware),
+   middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+    .concat(AuthEcommerceApi.middleware)
+    .concat(ProductEcommerceApi.middleware),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

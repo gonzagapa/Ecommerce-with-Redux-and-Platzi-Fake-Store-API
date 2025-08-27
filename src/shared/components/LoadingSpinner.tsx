@@ -4,7 +4,7 @@ type Props = {
     color: string,
     thickness:string,
 }
-
+//<LoadingSpinner size="w-6 h-6"color="border-white" thickness="border-4"/>
 export function LoadingSpinner({color,size,thickness}:Props) {
   return (
     <div

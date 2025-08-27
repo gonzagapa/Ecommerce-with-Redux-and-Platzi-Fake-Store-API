@@ -30,7 +30,6 @@ export function ProductList() {
             <ProductItem 
             key={product.id}
             imageURL={product.images[0]} 
-            id={product.id} 
             category={product.category.name}
             price={product.price} 
             title={product.title}/>

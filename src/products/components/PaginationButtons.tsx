@@ -4,7 +4,6 @@ import { ArrowRight } from 'lucide-react';
 import { ArrowLeft } from 'lucide-react';
 
 
-
 export function PaginationButtons() {
 
     const {pagination, setPagination, refElement} = usePaginationContext();
@@ -25,8 +24,8 @@ export function PaginationButtons() {
 
     return (
     <footer className="flex gap-3 mt-10 pb-4">
-        <Button style="w-30" isDisabled={buttonPreviousDisabled} textButton="" icon={<ArrowLeft/>} onAction={handlePrevious}/>
-        <Button style="w-30" isDisabled={buttonNextDisabled} textButton="" icon={<ArrowRight/>} onAction={handleNext}/>
+        <Button style="w-20" isDisabled={buttonPreviousDisabled} textButton="" icon={<ArrowLeft/>} onAction={handlePrevious}/>
+        <Button style="w-20" isDisabled={buttonNextDisabled} textButton="" icon={<ArrowRight/>} onAction={handleNext}/>
     </footer>
   )
 }

@@ -1,8 +1,8 @@
 import { createContext } from "react";
 
 export type PaginationType = {
-        offset:number,
-        limit:number
+        offset:string,
+        limit:string
 }
 
 export type PaginationContextType = {

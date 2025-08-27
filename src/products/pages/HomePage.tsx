@@ -5,8 +5,8 @@ import { PaginationProvider } from "../context/PaginationProvider";
 export function HomePage() {
   return (
     <main className="pt-6">
-          <FormInputSearch/>
           <PaginationProvider>
+            <FormInputSearch/>
             <ProductList/>
             <PaginationButtons/>
           </PaginationProvider>

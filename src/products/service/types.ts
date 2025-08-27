@@ -16,6 +16,14 @@ export interface Category {
 }
 
 export interface PaginationAttributes {
-    offset:number;
-    limit:number;
+    offset:string;
+    limit:string;
 }
+export interface FilterParameters {
+    title?:string;
+    category?:string;
+}
+
+export interface QueryParameters extends PaginationAttributes,FilterParameters {}
+
+

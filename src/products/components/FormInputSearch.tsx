@@ -1,14 +1,25 @@
 import { useState, type FormEvent } from "react"
 import { Search } from 'lucide-react';
+import {useGetProductsByParametersMutation } from "../service/productService";
+import { usePaginationContext } from "../hooks/usePaginationContext";
 
 
 
 export function FormInputSearch() {
-    const [inputValue, setInputValue] = useState("")
+    //TODO: logica de query y Categorias pasarla a contexto o redux
+    const [inputQueryValue, setInputQueryValue] = useState("");
+    const {pagination}= usePaginationContext();
+    const [getProducts,result] = useGetProductsByParametersMutation()
+
 
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
-        console.log(inputValue)
+        console.log(inputQueryValue)
+        getProducts({...pagination,title:inputQueryValue})
+        .then((data)=>{
+            console.log(data.data)
+        })
+        
     }
 
     return (
@@ -21,8 +32,8 @@ export function FormInputSearch() {
                     name="search"
                     id="search"
                     placeholder="Search by product's name"
-
-                    value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+                    value={inputQueryValue} 
+                    onChange={(e) => setInputQueryValue(e.target.value)} />
                     <button className="border-2 p-1 text-baby border-highlight hover:bg-highlight/85 hover:cursor-pointer bg-highlight rounded-md transition-colors duration-150 hover:text-gray-900 hover:border-baby" type="submit"><Search/></button>
                 </label>
             </form>

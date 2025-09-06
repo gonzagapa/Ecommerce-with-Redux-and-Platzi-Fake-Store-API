@@ -1,6 +1,6 @@
 import { useGetAllProductsQuery } from "../service/productService"
 import ProductItem from "./ProductItem";
-import { usePaginationContext } from "../hooks/usePaginationContext";
+import { useRefSliderContext } from "../hooks/useRefSliderContext";
 import { NoProductsExistsLayout } from "../layout/NoProductsExistsLayout";
 import { ProductShadowList } from "./ProductShadowList";
 import { useSelector } from "react-redux";
@@ -10,18 +10,20 @@ import type { RootState } from "../../app";
 export function ProductList() {
   const queryParams = useSelector((s:RootState) => s.product);
   
-  const {refElement} = usePaginationContext();
+  const {refElement,setHasProducts} = useRefSliderContext();
 
   const {data:products , isFetching} = useGetAllProductsQuery(queryParams);
   console.log(products)
 
   if(isFetching) {
+      setHasProducts(true)
       return (
           <ProductShadowList/>
       )
     }
   
   if(products?.length == 0 ){
+    setHasProducts(false)
     return (
       <NoProductsExistsLayout/>
     )

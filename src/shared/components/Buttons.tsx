@@ -17,7 +17,9 @@ export const Button = ({textButton, icon,onAction, isDisabled, style}:ButtonProp
         <button
         disabled={isDisabled}
         onClick={onAction}
-        className={`button ${isDisabled ? "bg-gray-400/80": "bg-highlight" } flex cursor-pointer justify-center text-white ${style}  hover:bg-highlight/85 mx-auto p-2 gap-2`}>
+        className={`button hover:bg-highlight/85 ${isDisabled ? "bg-gray-400/80": "bg-highlight" } 
+            flex cursor-pointer justify-center text-white ${style} 
+            disabled:hover:bg-gray-400/80  mx-auto p-2 gap-2`}>
             {icon}
             {textButton}
         </button>

@@ -1,15 +1,15 @@
 import { FormInputSearch, PaginationButtons, ProductList } from "../components";
-import { PaginationProvider } from "../context/PaginationProvider";
+import { RefSliderProvider } from "../context/RefSliderProvider";
 
 
 export function HomePage() {
   return (
     <main className="pt-6">
-          <PaginationProvider>
+          <RefSliderProvider>
             <FormInputSearch/>
             <ProductList/>
             <PaginationButtons/>
-          </PaginationProvider>
+          </RefSliderProvider>
     </main>
   )
 }

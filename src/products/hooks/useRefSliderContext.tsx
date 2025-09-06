@@ -1,10 +1,10 @@
 import { useContext } from "react"
-import { PaginationContext } from "../context/PaginationContext"
+import { RefSliderContext } from "../context/RefSliderContext"
 
 
-export function usePaginationContext() {
+export function useRefSliderContext() {
 
-    const currentPaginationContext = useContext(PaginationContext);
+    const currentPaginationContext = useContext(RefSliderContext);
 
     if(!currentPaginationContext){
         throw new Error("usePaginationContext has to be used within <PaginationProvider>")

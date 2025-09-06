@@ -1,25 +1,27 @@
-import { useState, type FormEvent } from "react"
+import { useState, type ChangeEvent, type FormEvent } from "react"
 import { Search } from 'lucide-react';
-import {useGetProductsByParametersMutation } from "../service/productService";
-import { usePaginationContext } from "../hooks/usePaginationContext";
+import { useDispatch } from "react-redux";
+import { changeTitleFilter } from "../store/productSlice";
 
 
 
 export function FormInputSearch() {
-    //TODO: logica de query y Categorias pasarla a contexto o redux
     const [inputQueryValue, setInputQueryValue] = useState("");
-    const {pagination}= usePaginationContext();
-    const [getProducts,result] = useGetProductsByParametersMutation()
 
+    const dispatch = useDispatch(); 
+   /*  const pagination = useSelector((s:RootState) => s.product); 
+    const [getProducts,] = useGetProductsByParametersMutation() */
+
+    const handleInputChange = (e:ChangeEvent<HTMLInputElement>)=>{
+        const value = e.target.value;
+        setInputQueryValue(value);
+    }
 
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
+        if(inputQueryValue.trim().length === 0) return; 
         console.log(inputQueryValue)
-        getProducts({...pagination,title:inputQueryValue})
-        .then((data)=>{
-            console.log(data.data)
-        })
-        
+        dispatch(changeTitleFilter({title:inputQueryValue}))
     }
 
     return (
@@ -33,7 +35,7 @@ export function FormInputSearch() {
                     id="search"
                     placeholder="Search by product's name"
                     value={inputQueryValue} 
-                    onChange={(e) => setInputQueryValue(e.target.value)} />
+                    onChange={handleInputChange} />
                     <button className="border-2 p-1 text-baby border-highlight hover:bg-highlight/85 hover:cursor-pointer bg-highlight rounded-md transition-colors duration-150 hover:text-gray-900 hover:border-baby" type="submit"><Search/></button>
                 </label>
             </form>

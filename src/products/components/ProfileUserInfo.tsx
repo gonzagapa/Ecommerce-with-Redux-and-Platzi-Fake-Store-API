@@ -15,7 +15,7 @@ export function ProfileUserInfo({children, access_token}:Props) {
 
     useEffect(()=>{
         if(user){
-            console.log(user);
+            //console.log(user);
             dispatch(setProfileInfo(user))
         }
     }, [user])

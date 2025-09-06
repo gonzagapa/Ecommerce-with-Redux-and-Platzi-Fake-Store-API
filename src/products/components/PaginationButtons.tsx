@@ -1,25 +1,34 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../shared/components/Buttons";
 import { usePaginationContext } from "../hooks/usePaginationContext";
 import { ArrowRight } from 'lucide-react';
 import { ArrowLeft } from 'lucide-react';
+import type { RootState } from "../../app";
+import { changePaginationParams } from "../store/productSlice";
 
 
 export function PaginationButtons() {
 
-    const {pagination, setPagination, refElement} = usePaginationContext();
+    const {refElement} = usePaginationContext();
+    const {limit,offset} = useSelector((s:RootState) => s.product); 
+    const dispatch = useDispatch(); 
 
-    const buttonPreviousDisabled = pagination.offset == 0;
-    const buttonNextDisabled = pagination.offset == 75;
-    console.log({pagination})
+    const buttonPreviousDisabled = Number(offset )== 0;
+    const buttonNextDisabled = Number(offset) == 75;
+    //console.log({pagination})
 
     const handleNext = ()=>{
-        setPagination({...pagination,offset:pagination.offset+ pagination.limit})
+        //setPagination({...pagination,offset:pagination.offset+ pagination.limit})
+        dispatch(changePaginationParams({limit,offset:`${Number(offset)+Number(limit)}`}))
         refElement.current?.scrollIntoView({behavior:'smooth',block:'start',})
     } 
 
     const handlePrevious = ()=>{
-        if(pagination.offset !== 0) setPagination({...pagination,offset:pagination.offset- pagination.limit})
-        refElement.current?.scrollIntoView({behavior:'smooth',block:'start',})
+        //if(Number(pagination.offset) !== 0) setPagination({...pagination,offset:`${Number(pagination.offset)- Number(pagination.limit)}`})
+        if(Number(offset) !== 0) {
+            dispatch(changePaginationParams({limit,offset:`${Number(offset)- Number(limit)}`}))
+            refElement.current?.scrollIntoView({behavior:'smooth',block:'start',})
+        }
     }
 
     return (

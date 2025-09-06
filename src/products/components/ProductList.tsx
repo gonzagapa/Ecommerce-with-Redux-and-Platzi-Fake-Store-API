@@ -3,14 +3,22 @@ import ProductItem from "./ProductItem";
 import { usePaginationContext } from "../hooks/usePaginationContext";
 import { NoProductsExistsLayout } from "../layout/NoProductsExistsLayout";
 import { ProductShadowList } from "./ProductShadowList";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../app";
 
 
 export function ProductList() {
 
-  const {pagination:initialValues, refElement} = usePaginationContext();
+ 
 
-  const {data:products , isFetching} = useGetAllProductsQuery(initialValues);
-  console.log(products);
+  const {limit,offset} = useSelector((s:RootState) => s.product); 
+
+
+  const {refElement} = usePaginationContext();
+
+  //todo:change the use of data
+  const {data:products , isFetching} = useGetAllProductsQuery({limit,offset});
+  //console.log(products);
 
   if(isFetching) {
       return (

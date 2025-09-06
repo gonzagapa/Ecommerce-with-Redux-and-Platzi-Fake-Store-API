@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { Search } from 'lucide-react';
 import { useDispatch} from "react-redux";
-import { changeTitleFilter, removeTitleFilter } from "../store/productSlice";
+import { changeTitleFilter, removeSpecificFilter } from "../store/productSlice";
 
 export function FormInputSearch() {
     const [inputQueryValue, setInputQueryValue] = useState("");
@@ -15,7 +15,7 @@ export function FormInputSearch() {
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
         if(inputQueryValue.trim().length === 0){
-            dispatch(removeTitleFilter())
+            dispatch(removeSpecificFilter("title"))
             return;
         }; 
         dispatch(changeTitleFilter({title:inputQueryValue}))

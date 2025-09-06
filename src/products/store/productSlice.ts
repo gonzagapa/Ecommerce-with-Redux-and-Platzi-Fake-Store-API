@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type {QueryParameters } from '../service/types';
+import type {FilterParameters, QueryParameters } from '../service/types';
 
 const initialState:QueryParameters = {
     offset:"0",
@@ -14,8 +14,8 @@ export const productSlice = createSlice({
         const {title} =action.payload
         state.title = title
     },
-    removeTitleFilter:(state)=>{
-      delete state.title;
+    removeSpecificFilter:(state,action:PayloadAction<keyof FilterParameters>)=>{
+      delete state[action.payload];
     },
     changePaginationParams:(state, action:PayloadAction<Pick<QueryParameters,"offset"| "limit">>)=>{
       const {offset,limit} = action.payload; 
@@ -25,4 +25,4 @@ export const productSlice = createSlice({
   }
 });
 
-export const {changeTitleFilter,changePaginationParams, removeTitleFilter} = productSlice.actions
+export const {changeTitleFilter,changePaginationParams, removeSpecificFilter} = productSlice.actions

@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ecommerceApi } from '../../app/api/EcommerceApi';
-import type { PaginationAttributes, ProductResponse, QueryParameters } from './types';
+import type {ProductResponse, QueryParameters } from './types';
 
 // function toStringParams(params: QueryParameters): Record<string, string> {
 //     const result: Record<string, string> = {};
@@ -18,22 +18,16 @@ export const ProductEcommerceApi = createApi({
         baseUrl:ecommerceApi.getUri(),
     }),
     endpoints: (builder) =>({
-        getAllProducts:builder.query<ProductResponse[],PaginationAttributes>({
-            query:({offset = '0',limit = '10'})=>(
+        getAllProducts:builder.query<ProductResponse[],QueryParameters>({
+            query:(queryParams:QueryParameters)=>(
                 {
-                    url:`/products?offset=${offset}&limit=${limit}`,
+                    url:`/products?${new URLSearchParams({...queryParams}).toString()}`,
                     method:"GET"
                 }
             )
         }),
-        getProductsByParameters:builder.mutation<ProductResponse[],QueryParameters>({
-            query:(queryParams:QueryParameters)=>({
-                url:`/products?${new URLSearchParams({...queryParams}).toString()}`,
-                method:'GET'
-            })
-        })
     })
 
 })
 
-export const {useGetAllProductsQuery,useGetProductsByParametersMutation} = ProductEcommerceApi
+export const {useGetAllProductsQuery} = ProductEcommerceApi

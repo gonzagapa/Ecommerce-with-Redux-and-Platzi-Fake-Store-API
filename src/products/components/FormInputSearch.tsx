@@ -1,17 +1,12 @@
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { Search } from 'lucide-react';
-import { useDispatch } from "react-redux";
-import { changeTitleFilter } from "../store/productSlice";
-
-
+import { useDispatch} from "react-redux";
+import { changeTitleFilter, removeTitleFilter } from "../store/productSlice";
 
 export function FormInputSearch() {
     const [inputQueryValue, setInputQueryValue] = useState("");
 
     const dispatch = useDispatch(); 
-   /*  const pagination = useSelector((s:RootState) => s.product); 
-    const [getProducts,] = useGetProductsByParametersMutation() */
-
     const handleInputChange = (e:ChangeEvent<HTMLInputElement>)=>{
         const value = e.target.value;
         setInputQueryValue(value);
@@ -19,8 +14,10 @@ export function FormInputSearch() {
 
     const handleSubmit = (e:FormEvent) => {
         e.preventDefault();
-        if(inputQueryValue.trim().length === 0) return; 
-        console.log(inputQueryValue)
+        if(inputQueryValue.trim().length === 0){
+            dispatch(removeTitleFilter())
+            return;
+        }; 
         dispatch(changeTitleFilter({title:inputQueryValue}))
     }
 

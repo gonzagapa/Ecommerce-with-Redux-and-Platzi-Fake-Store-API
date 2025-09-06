@@ -8,17 +8,12 @@ import type { RootState } from "../../app";
 
 
 export function ProductList() {
-
- 
-
-  const {limit,offset} = useSelector((s:RootState) => s.product); 
-
-
+  const queryParams = useSelector((s:RootState) => s.product);
+  
   const {refElement} = usePaginationContext();
 
-  //todo:change the use of data
-  const {data:products , isFetching} = useGetAllProductsQuery({limit,offset});
-  //console.log(products);
+  const {data:products , isFetching} = useGetAllProductsQuery(queryParams);
+  console.log(products)
 
   if(isFetching) {
       return (

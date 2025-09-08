@@ -29,7 +29,7 @@ export function ProductList() {
     )
   }
   return (
-    <article ref={refElement} className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full mt-5 px-10">
+    <article ref={refElement} className="grid col-span-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full">
         {
           products?.map((product) => (
             <ProductItem 

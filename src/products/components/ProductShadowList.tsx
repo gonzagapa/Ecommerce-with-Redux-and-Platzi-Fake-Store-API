@@ -8,7 +8,7 @@ export function ProductShadowList() {
     return (
         <>
             <LoadingLayout/>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full mt-5 px-10">
+            <div className="grid col-span-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full mt-5 px-10">
                     {
                         render.map((index)=>(<ProductShadowItem key={index}/>))
                     }

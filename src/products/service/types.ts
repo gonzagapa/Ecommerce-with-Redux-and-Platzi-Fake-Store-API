@@ -9,9 +9,9 @@ export interface ProductResponse {
 }
 
 export interface Category {
-    id:    number;
+    id?:    number;
     name:  string;
-    image: string;
+    image?: string;
     slug:  string;
 }
 

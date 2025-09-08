@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ecommerceApi } from '../../app/api/EcommerceApi';
-import type {ProductResponse, QueryParameters } from './types';
+import type {Category, ProductResponse, QueryParameters } from './types';
 
 export const ProductEcommerceApi = createApi({
     reducerPath:"ProductEcommerceApi",
@@ -16,8 +16,18 @@ export const ProductEcommerceApi = createApi({
                 }
             )
         }),
+        getCategories:builder.query<Category[],void>({
+            query:()=>({
+                url:"/categories",
+                method:"GET"
+            }),
+            transformResponse:(response:Category[],meta,arg) => {
+                response.unshift({name:"All", slug:"all"})
+                return response.slice(0,6)
+            }
+        })
     })
 
 })
 
-export const {useGetAllProductsQuery} = ProductEcommerceApi
+export const {useGetAllProductsQuery, useGetCategoriesQuery} = ProductEcommerceApi

@@ -1,19 +1,15 @@
 import { BookmarkPlus } from 'lucide-react';
 import { CircleX } from 'lucide-react';
 import { useGetCategoriesQuery } from '../service/productService';
+import { ButtonFilter } from './ButtonFilter';
+import { useDispatch } from 'react-redux';
 
-type ButtonProps = {
-    text:string
-    id:string
-}
 
-const ButtonFilter = ({text, id}:ButtonProps)=>{
-    return (<button className='cursor-pointer p-2 capitalize focus:border-l-2 focus:border-highlight' id={id}>{text}</button>)
-}
 
 export const FilterCategories = ()=>{
 
     const {data:categories, isError,isLoading} = useGetCategoriesQuery(); 
+    const dispatch = useDispatch(); 
 
     if(isLoading){
         return (
@@ -36,7 +32,7 @@ export const FilterCategories = ()=>{
             <h2 className="text-2xl text-center flex items-center"> <BookmarkPlus className='text-highlight'/> Categories</h2>
             {
                 categories?.map((category) =>(
-                    <ButtonFilter text={category.name} id={category.slug}/>
+                    <ButtonFilter key={category.slug} dispatch={dispatch} text={category.name} id={category.slug}/>
                 ))
             }
         </aside>

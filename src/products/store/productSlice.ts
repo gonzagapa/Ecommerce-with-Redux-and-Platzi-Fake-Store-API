@@ -14,6 +14,9 @@ export const productSlice = createSlice({
         const {title} =action.payload
         state.title = title
     },
+    changeCategoryFilter:(state,action:PayloadAction<string>)=>{
+      state.categorySlug = action.payload; 
+    },
     removeSpecificFilter:(state,action:PayloadAction<keyof FilterParameters>)=>{
       delete state[action.payload];
     },
@@ -25,4 +28,8 @@ export const productSlice = createSlice({
   }
 });
 
-export const {changeTitleFilter,changePaginationParams, removeSpecificFilter} = productSlice.actions
+export const {changeTitleFilter,
+  changePaginationParams, 
+  removeSpecificFilter, 
+  changeCategoryFilter
+} = productSlice.actions

@@ -21,7 +21,7 @@ export interface PaginationAttributes {
 }
 export interface FilterParameters {
     title?:string;
-    category?:string;
+    categorySlug?:string;
 }
 
 export interface QueryParameters extends PaginationAttributes,FilterParameters {}

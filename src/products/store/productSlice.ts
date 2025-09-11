@@ -4,6 +4,7 @@ import type {FilterParameters, QueryParameters } from '../service/types';
 const initialState:QueryParameters = {
     offset:"0",
     limit:"12",
+    categorySlug:""
 }
 
 export const productSlice = createSlice({

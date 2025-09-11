@@ -14,10 +14,6 @@ export  function ButtonFilter({text, id, dispatch}:ButtonProps) {
   const {categorySlug} =useSelector((s:RootState)=>s.product); 
   
       const handleClick = ()=> {
-          if(id === "all"){
-              dispatch(removeSpecificFilter("categorySlug"))
-              return; 
-          }
           dispatch(changeCategoryFilter(id))
       }
   

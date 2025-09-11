@@ -11,10 +11,11 @@ export const ProductEcommerceApi = createApi({
         getAllProducts:builder.query<ProductResponse[],QueryParameters>({
             query:(queryParams:QueryParameters)=>(
                 {
-                    url:`/products?${new URLSearchParams({...queryParams}).toString()}`,
+                    url:`/products?${new URLSearchParams({...queryParams}).toString() }`,
                     method:"GET"
                 }
-            )
+            ),
+            
         }),
         getCategories:builder.query<Category[],void>({
             query:()=>({
@@ -22,7 +23,7 @@ export const ProductEcommerceApi = createApi({
                 method:"GET"
             }),
             transformResponse:(response:Category[],meta,arg) => {
-                response.unshift({name:"All", slug:"all"})
+                response.unshift({name:"All", slug:""})
                 return response.slice(0,6)
             }
         })

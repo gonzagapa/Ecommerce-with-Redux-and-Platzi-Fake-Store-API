@@ -24,7 +24,7 @@ export function FormInputSearch() {
     return (
         <section className="flex justify-center">
             <form method="" onSubmit={handleSubmit} role="search">
-                    <label htmlFor="search" id="search" className="flex gap-2 items-center" >
+                    <label htmlFor="search" className="flex gap-2 items-center" >
                     <input 
                     className="border-2 w-[250px] focus:outline-highlight dark:border-baby border-highlight p-2 rounded-md"
                     type="search"

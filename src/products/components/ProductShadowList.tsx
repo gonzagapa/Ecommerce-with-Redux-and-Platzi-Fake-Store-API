@@ -1,4 +1,5 @@
 import { LoadingLayout } from "../layout/LoadingLayout";
+import { ProductListContainerLayout } from "../layout/ProductListContainerLayout";
 import { ProductShadowItem } from "./ProductShadowItem";
 
 
@@ -8,11 +9,12 @@ export function ProductShadowList() {
     return (
         <>
             <LoadingLayout/>
-            <div className="grid col-span-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full mt-5 px-10">
+            <ProductListContainerLayout ref={null}>
                     {
                         render.map((index)=>(<ProductShadowItem key={index}/>))
                     }
-            </div>
+            </ProductListContainerLayout>
+
         </>
   )
 }

@@ -16,7 +16,8 @@ export const productSlice = createSlice({
         state.title = title
     },
     changeCategoryFilter:(state,action:PayloadAction<string>)=>{
-      state.categorySlug = action.payload; 
+      state.categorySlug = action.payload;
+      state.offset = "0" 
     },
     removeSpecificFilter:(state,action:PayloadAction<keyof FilterParameters>)=>{
       delete state[action.payload];

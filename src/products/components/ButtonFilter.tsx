@@ -2,7 +2,7 @@ import type { UnknownAction } from "@reduxjs/toolkit"
 import type { Dispatch } from "react"
 import { useSelector } from "react-redux"
 import type { RootState } from "../../app"
-import { changeCategoryFilter, removeSpecificFilter } from "../store/productSlice"
+import { changeCategoryFilter } from "../store/productSlice"
 
 type ButtonProps = {
     text:string

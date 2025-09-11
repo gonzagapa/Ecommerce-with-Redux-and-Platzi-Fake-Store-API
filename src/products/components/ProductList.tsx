@@ -5,6 +5,7 @@ import { NoProductsExistsLayout } from "../layout/NoProductsExistsLayout";
 import { ProductShadowList } from "./ProductShadowList";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app";
+import { ProductListContainerLayout } from "../layout/ProductListContainerLayout";
 
 
 export function ProductList() {
@@ -13,7 +14,6 @@ export function ProductList() {
   const {refElement,setHasProducts} = useRefSliderContext();
 
   const {data:products , isFetching} = useGetAllProductsQuery(queryParams);
-  console.log(products)
 
   if(isFetching) {
       setHasProducts(true)
@@ -29,17 +29,17 @@ export function ProductList() {
     )
   }
   return (
-    <article ref={refElement} className="grid col-span-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full">
-        {
-          products?.map((product) => (
-            <ProductItem 
-            key={product.id}
-            imageURL={product.images[0]} 
-            category={product.category.name}
-            price={product.price} 
-            title={product.title}/>
-          ))
-        }
-    </article>
+   <ProductListContainerLayout ref={refElement}>
+     {
+       products?.map((product) => (
+         <ProductItem 
+         key={product.id}
+         imageURL={product.images[0]} 
+         category={product.category.name}
+         price={product.price} 
+         title={product.title}/>
+       ))
+     }
+   </ProductListContainerLayout>
   )
 }

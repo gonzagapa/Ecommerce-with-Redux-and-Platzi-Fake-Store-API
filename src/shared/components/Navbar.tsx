@@ -26,7 +26,7 @@ export function Navbar() {
     <div className="flex justify-between items-center px-2 py-2 min-h-16 bg-slate-300 dark:bg-slate-800 border-b-baby">
         <h1 className="italic capitalize text-2xl md:text-4xl underline decoration-highlight">The best shop</h1>
         <nav>
-            <ul className='flex gap-1.5'>
+            <ul className='flex md:gap-5'>
                  <ButtonShoppingCart/>
                 <li> 
                   <button 

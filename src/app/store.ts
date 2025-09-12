@@ -3,12 +3,14 @@ import { authSlice } from '../auth/store/authSlice'
 import { AuthEcommerceApi } from '../auth/services/authService'
 import { ProductEcommerceApi } from '../products/service/productService'
 import { productSlice } from '../products/store/productSlice'
+import { cartSlice } from '../cart'
 // ...
 
 export const store = configureStore({
   reducer: {
     auth:authSlice.reducer,
     product:productSlice.reducer,
+    cart:cartSlice.reducer,
 
     [AuthEcommerceApi.reducerPath]: AuthEcommerceApi.reducer,
     [ProductEcommerceApi.reducerPath]:ProductEcommerceApi.reducer

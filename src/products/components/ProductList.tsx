@@ -33,6 +33,7 @@ export function ProductList() {
      {
        products?.map((product) => (
          <ProductItem 
+         id={product.id}
          key={product.id}
          imageURL={product.images[0]} 
          category={product.category.name}

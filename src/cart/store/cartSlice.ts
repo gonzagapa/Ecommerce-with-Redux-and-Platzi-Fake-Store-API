@@ -1,9 +1,8 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
-interface CartProduct {
+export interface CartProduct {
     id:   number;
     title:string;
-    slug: string;
     price:number;
     image: string;
     amount:number
@@ -26,7 +25,7 @@ export const cartSlice = createSlice({
   reducers: {
     addItemToCart:(state, action:PayloadAction<CartProduct>)=>{
         state.cartProducts.push(action.payload)
-        state.totalProducts =+1; //todo:refactor to add more products
+        state.totalProducts +=1; //todo:refactor to add more products
     },
     removeItemFromCart:(state, action:PayloadAction<Pick<CartProduct, "id">>) =>{
         const {id} = action.payload

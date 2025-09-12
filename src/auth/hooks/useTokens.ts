@@ -25,6 +25,9 @@ export const useTokens = ()=>{
         const tokens = retrieveTokensInStorage();
         if(tokens == null) return null;
 
+        //todo:validate the tokens with zod
+
+
         //if in the storage we have tokens, save them in the store
         dispatch(setTokens(tokens));
          const {access_token} = tokens;

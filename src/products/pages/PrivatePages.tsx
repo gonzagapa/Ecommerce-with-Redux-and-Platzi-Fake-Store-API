@@ -5,7 +5,6 @@ import { useTokens } from "../../auth/hooks";
 
 export function PrivatePages() {
     const {retrieveTokensFromStorage} = useTokens();
-    //const {access_token} = useSelector((s:RootState)=> s.auth);
     const access_token = retrieveTokensFromStorage();
     
     if(!access_token){

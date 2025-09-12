@@ -4,19 +4,21 @@ import { useNavigate } from 'react-router';
 import type { RootState } from '../../app';
 import { LogOut } from 'lucide-react';
 import { ButtonShoppingCart } from './ButtonShoppingCart';
+import { useTokens } from '../../auth/hooks';
 
 export function Navbar() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {removeFromStorage}= useTokens()
   const {access_token} = useSelector((s:RootState)=> s.auth);
 
   const isAuth = access_token.length > 0? true: false
 
   const handleLogOut = ()=>{
-    console.log("Logout");
     dispatch(logOut());
     navigate("/auth/login");
+    removeFromStorage()
   }
 
   

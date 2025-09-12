@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import type { UserTokens } from "../services/types";
-import { retrieveTokensInStorage, saveTokensInStorage } from "../helpers/localStorageOperations";
+import { removeTokensFromStorage, retrieveTokensInStorage, saveTokensInStorage } from "../helpers/localStorageOperations";
 import { setTokens } from "../store/authSlice";
 /**
  * TODO:
@@ -16,6 +16,10 @@ export const useTokens = ()=>{
         dispatch(setTokens(tokens));
     }
 
+    const removeFromStorage = ()=>{
+        removeTokensFromStorage();
+    }
+
 
     const retrieveTokensFromStorage = ():string|null=>{
         const tokens = retrieveTokensInStorage();
@@ -29,6 +33,7 @@ export const useTokens = ()=>{
 
     return {
         saveInLocalStorage,
+        removeFromStorage,
         retrieveTokensFromStorage
     }
 }

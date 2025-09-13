@@ -17,8 +17,6 @@ export function ProductItem({imageURL,price,title,id}:Props) {
   const dispatch = useDispatch();
 
   const handleClick = ()=>{
-    console.log("click in product",id );
-
     const newProduct:CartProduct = {
       amount:1,
       id:id,

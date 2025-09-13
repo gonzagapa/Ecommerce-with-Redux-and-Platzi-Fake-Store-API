@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router";
 import { ProductRoutes } from "../../products/routes/ProductRoutes";
 import { AuthRoutes } from "../../auth/routes/AuthRoutes";
 import { LayoutPage } from "../layout/LayoutPage";
+import CartRoute from "../../cart/routes/CartRoute";
 export function AppRoutes() {
   return (
     <BrowserRouter>
@@ -9,7 +10,7 @@ export function AppRoutes() {
       <Route element={<LayoutPage/>}>
           <Route path="/*" element={<ProductRoutes/>}/>
           <Route path="/auth/*" element={<AuthRoutes/>}/>
-
+          <Route path="/cart/*" element={<CartRoute/>}/>
       </Route>
     </Routes>
     </BrowserRouter>

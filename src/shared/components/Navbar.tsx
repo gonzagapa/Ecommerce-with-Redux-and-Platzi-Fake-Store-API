@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../auth/store/authSlice';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import type { RootState } from '../../app';
 import { LogOut } from 'lucide-react';
 import { ButtonShoppingCart } from './ButtonShoppingCart';
@@ -24,7 +24,9 @@ export function Navbar() {
   
   return (
     <div className=" md:sticky md:top-0 md:right-0 flex justify-between items-center px-2 py-2 min-h-16 bg-slate-300 dark:bg-slate-800 border-b-baby">
+      <Link to={"/"}>
         <h1 className="italic capitalize text-2xl md:text-4xl underline decoration-highlight">The best shop</h1>
+      </Link>
         <nav>
             <ul className='flex md:gap-5'>
               <li className={`relative ${isAuth ? "block":"invisible"} `}>

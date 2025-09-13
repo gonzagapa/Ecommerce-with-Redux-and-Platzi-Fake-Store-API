@@ -24,7 +24,7 @@ export function ProductItem({imageURL,price,title,id}:Props) {
       id:id,
       title,
       price,
-      image:imageURL
+      imageURL:imageURL
     }
     dispatch(addItemToCart(newProduct))
   }

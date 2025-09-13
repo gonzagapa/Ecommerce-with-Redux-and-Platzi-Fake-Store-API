@@ -1,7 +1,7 @@
 import { ShoppingCart } from "lucide-react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../app";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 
 
 export  function ButtonShoppingCart() {
@@ -9,14 +9,15 @@ export  function ButtonShoppingCart() {
     //Todo:add opacity while scrolling
     const {totalProducts} = useSelector((s:RootState) => s.cart);
     const navigate = useNavigate();
-
+    let location = useLocation();
+    
     const handleClick = ()=>{
       navigate("/cart")
     }
 
   return (
     <>
-     <button onClick={handleClick} className='fixed bottom-16 right-3  bg-highlight rounded-full shadow-sm shadow-baby  md:static button md:inset-0 md:rounded-none md:shadow-none md:bg-transparent  text-blue-900 dark:text-baby hover:text-highlight transition-all duration-200 ease-in '>
+     <button onClick={handleClick} className={`${location.pathname === '/cart' ? "hidden":""} fixed bottom-16 right-3  bg-highlight rounded-full shadow-sm shadow-baby  md:static button md:inset-0 md:rounded-none md:shadow-none md:bg-transparent  text-blue-900 dark:text-baby hover:text-highlight transition-all duration-200 ease-in `}>
             <ShoppingCart/>
             {
               totalProducts>0 && (

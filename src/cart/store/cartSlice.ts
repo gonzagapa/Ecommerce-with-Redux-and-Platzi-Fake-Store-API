@@ -24,8 +24,12 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addItemToCart:(state, action:PayloadAction<CartProduct>)=>{
-        state.cartProducts.push(action.payload)
-        state.totalProducts +=1; //todo:refactor to add more products
+
+        //check if the product exists in cartProducts
+        if(!state.cartProducts.find((product) => product.id === action.payload.id)){
+            state.cartProducts.push(action.payload)
+            state.totalProducts +=1; //todo:refactor to add more products
+        }
     },
     removeItemFromCart:(state, action:PayloadAction<Pick<CartProduct, "id">>) =>{
         const {id} = action.payload

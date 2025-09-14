@@ -1,9 +1,11 @@
-import { Cart } from "../components/Cart";
+import { CartList } from "../components/CartList";
+import { CartModal } from "../components/CartModal";
 
 export function CartPage() {
   return (
-    <>
-        <Cart/>
-    </>
+    <main className="content-center lg:grid lg:grid-cols-12">
+        <CartModal/>
+        <CartList/>
+    </main>
   )
 }

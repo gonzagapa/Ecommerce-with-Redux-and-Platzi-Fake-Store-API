@@ -37,7 +37,7 @@ export const cartSlice = createSlice({
     },
     removeItemFromCart:(state, action:PayloadAction<Pick<CartProduct, "id">>) =>{
         const {id} = action.payload
-        state.totalProducts -= 1;
+        state.totalProducts = state.totalProducts - (state.cartProducts.find(product => product.id === id) as CartProduct).amount;
         state.cartProducts = state.cartProducts.filter(product => product.id !== id)
     },
     resetCart:(state) =>{
@@ -53,7 +53,7 @@ export const cartSlice = createSlice({
                 const newAmount = item.amount + action.payload.amount;
                 return {
                     ...item,
-                    amount:newAmount
+                    amount: newAmount>0 ? newAmount: 0 //restrict amounts lower than 0
                 }
             }
             return item
@@ -64,4 +64,4 @@ export const cartSlice = createSlice({
   }
 });
 
-export const {addItemToCart,removeItemFromCart,resetCart} = cartSlice.actions
+export const {addItemToCart,removeItemFromCart,resetCart,modifiedItemAmount} = cartSlice.actions

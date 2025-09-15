@@ -5,6 +5,7 @@ import type { RootState } from '../../app';
 import { LogOut } from 'lucide-react';
 import { ButtonShoppingCart } from './ButtonShoppingCart';
 import { useTokens } from '../../auth/hooks';
+import { ButtonToggleTheme } from './ButtonToggleTheme';
 
 export function Navbar() {
 
@@ -27,6 +28,7 @@ export function Navbar() {
       <Link to={"/"}>
         <h1 className="italic capitalize text-2xl md:text-4xl underline decoration-highlight">The best shop</h1>
       </Link>
+        <ButtonToggleTheme/>
         <nav>
             <ul className='flex md:gap-5'>
               <li className={`relative ${isAuth ? "block":"invisible"} `}>

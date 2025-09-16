@@ -30,8 +30,8 @@ export function PaginationButtons() {
 
     return (
     <footer className="flex gap-3 mt-10 pb-4">
-        <Button style="w-20" isDisabled={buttonPreviousDisabled} textButton="" icon={<ArrowLeft/>} onAction={handlePrevious}/>
-        <Button style="w-20" isDisabled={buttonNextDisabled} textButton="" icon={<ArrowRight/>} onAction={handleNext}/>
+        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonPreviousDisabled} textButton="" icon={<ArrowLeft/>} onAction={handlePrevious}/>
+        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonNextDisabled} textButton="" icon={<ArrowRight/>} onAction={handleNext}/>
     </footer>
   )
 }

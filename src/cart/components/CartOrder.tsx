@@ -20,9 +20,9 @@ export function CartOrder() {
         <h2 className="font-semibold mb-5 text-2xl md:text-4xl lg:w-[5ch]">Order Summary</h2>
         <div className="border-b-2 dark:border-white border-highlight mb-5"></div>
         <div className="flex flex-col gap-5">
-            <p className="text-gray-400 md:text-xl capitalize flex">Subtotal <span className="font-bold text-baby ml-auto">{currency.format(total)}</span></p>
-            <p className="text-gray-400 md:text-xl capitalize flex">Shipping <span className="font-bold text-baby ml-auto">Free</span></p>
-            <p className="text-gray-400 md:text-xl capitalize flex">Total <span className="font-bold text-baby ml-auto">{currency.format(total)}</span></p>
+            <p className="dark:text-gray-400 text-gray-600 font-light md:text-xl capitalize flex">Subtotal <span className=" dark:text-baby text-font-light ml-auto">{currency.format(total)}</span></p>
+            <p className="dark:text-gray-400 text-gray-600 font-light md:text-xl capitalize flex">Shipping <span className=" dark:text-baby text-font-light ml-auto">Free</span></p>
+            <p className="dark:text-gray-400  text-gray-600 font-light md:text-xl capitalize flex">Total <span className="font-semibold dark:text-baby text-font-light ml-auto">{currency.format(total)}</span></p>
         </div>
         <Button onAction={handlePayment} textButton="Proceed for Payment" style="w-full mt-5 font-semibold"/>
     </aside>

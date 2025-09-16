@@ -38,26 +38,26 @@ export function LoginPage() {
   }
 
   return (
-    <main className="dark:bg-slate-800 border-2 rounded-lg border-baby
-    min-w-sm p-3">
+    <main className="dark:bg-slate-800 rounded-lg 
+    p-3 shadow-md shadow-slate-400 dark:shadow-slate-800 min-w-[350px] w-11/12 max-w-lg">
         { isError && <Modal title="User doesnt exists" text="Try again" icon="error"/> }
-        <h2 className="text-center text-5xl mb-5 text-highlight font-bold">Login</h2>
+        <h2 className="text-center text-5xl mb-10   font-semibold">Login</h2>
         <form action="" onSubmit={handleSubmit}>
-        <div className="flex flex-col gap-2 mb-5">
+        <div className="flex flex-col gap-2 mb-10">
             <label htmlFor="email" 
-            className="capitalize font-semibold text-xl">email addres:</label>
+            className="capitalize font-light text-xl dark:text-baby text-font-light">email addres:</label>
             <input type="email" name="email" id="email" 
             value={email}
             onChange={(e)=> onInputChange(e)}
-            className="bg-slate-900 rounded-lg p-2 outline-slate-300"/>
+            className="dark:bg-slate-900 text-font-light bg-slate-200 outline-highlight rounded-lg p-2 dark:outline-slate-300"/>
         </div>
-        <div className="flex flex-col gap-2 mb-5">
+        <div className="flex flex-col gap-2 mb-10">
             <label htmlFor="password"
-            className="capitalize font-semibold text-xl">password:</label>
+            className="capitalize font-light text-xl  dark:text-baby text-font-light">password:</label>
             <input type="password" name="password" id="password" 
             value={password}
             onChange={(e)=> onInputChange(e)}
-            className="bg-slate-900 rounded-lg p-2 outline-slate-300"/>
+            className="dark:bg-slate-900 text-font-light bg-slate-200 outline-highlight rounded-lg p-2 dark:outline-slate-300"/>
         </div>
           <ButtonSpinner isLoading={isLoading} textButton="Login"/>
         </form>

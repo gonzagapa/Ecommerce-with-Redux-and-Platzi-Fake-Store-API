@@ -24,12 +24,12 @@ export function Navbar() {
 
   
   return (
-    <div className="flex justify-between items-center px-2 py-2 min-h-16 bg-slate-300 dark:bg-slate-800 border-b-baby">
+    <div className="flex justify-between items-center px-2 py-2 min-h-16 bg-slate-200 dark:bg-slate-800 border-b-baby">
       <Link to={"/"}>
-        <h1 className="italic capitalize text-2xl md:text-4xl underline decoration-highlight">The best shop</h1>
+        <h1 className="italic capitalize text-2xl md:text-4xl underline decoration-highlight ">The best shop</h1>
       </Link>
         <ButtonToggleTheme/>
-        <nav>
+        <nav className={`${isAuth ? "block":"hidden"} `}>
             <ul className='flex md:gap-5'>
               <li className={`relative ${isAuth ? "block":"invisible"} `}>
                   <ButtonShoppingCart/>
@@ -37,7 +37,7 @@ export function Navbar() {
                 <li> 
                   <button 
                   onClick={handleLogOut}
-                  className={` ${isAuth ? "block":"invisible"}   button border-2 border-slate-100 font-bold flex gap-0.5 transition-all duration-200 ease-in hover:text-highlight hover:border-highlight`}><LogOut/>Logout
+                  className={` ${isAuth ? "block":"invisible"} text-blue-400 dark:text-baby   button border-2 border-blue-400 dark:border-baby font-bold flex gap-0.5 transition-all duration-200 ease-in hover:text-highlight hover:border-highlight shadow-sm shadow-slate-400`}><LogOut/>Logout
                   </button>
                 </li>
             </ul>

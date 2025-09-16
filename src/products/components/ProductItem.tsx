@@ -28,17 +28,19 @@ export function ProductItem({imageURL,price,title,id}:Props) {
   }
 
   return (
-    <div className="dark:border-baby border-highlight border-2 rounded-md p-3 flex flex-col gap-4 text-baby">
-        <div className="size-min-[250px] overflow-hidden rounded-md">
+    <article className=" shadow-md shadow-slate-300 dark:shadow-slate-700  rounded-md  flex flex-col gap-4 text-font-light  dark:text-baby">
+        <div className="size-min-[250px] overflow-hidden rounded-t-md">
             <img loading="lazy" src={imageURL} alt={`image of ${title}`} className="size-full object-cover" width={250} height={250}/>
         </div>
-        <p className="font-medium text-xl md:text-2xl text-center">{title}</p>
-        <p className="text-lg font-bold md:text-xl text-center">{currency.format(price)}</p>
+        <div className="flex gap-2 items-center justify-between px-3">
+          <p className="font-medium md:text-lg text-left line-clamp-2 max-w-[12ch]">{title}</p>
+          <p className="text-lg font-bold md:text-xl text-center">{currency.format(price)}</p>
+        </div>
         {/* <p className="text-center"><span className="capitalize">category: </span>{category}</p> */}
-        <div className="mt-auto">
+        <div className="mt-auto py-3">
           <Button onAction={handleClick} icon={<ShoppingCart/>} textButton="Add to cart"/>    
         </div>
-      </div>
+      </article>
   )
 }
 

@@ -19,7 +19,7 @@ export  function ButtonFilter({text, id, dispatch}:ButtonProps) {
   
       return (<button 
           onClick={handleClick}
-          className={`cursor-pointer p-2 capitalize 
+          className={`cursor-pointer p-2 capitalize text-font-light font-semibold  dark:text-baby
           ${categorySlug === id ? 'border-highlight border-l-2' : ''}`} 
           id={id}>{text}
           </button>)

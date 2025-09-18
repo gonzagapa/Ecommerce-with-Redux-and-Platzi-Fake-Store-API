@@ -3,6 +3,7 @@ import { ShoppingCart } from 'lucide-react';
 import { currency } from "../../shared/utility";
 import { useDispatch } from "react-redux";
 import { addItemToCart, type CartProduct } from "../../cart";
+import type React from "react";
 
 type Props = {
     category:string
@@ -10,6 +11,13 @@ type Props = {
     price:number,
     title:string,
     id:number
+}
+
+const ButtonChildren = ({text,icon}:{text:string,icon:React.ReactNode})=>{
+  return (<>
+    <span>{text}</span>
+    {icon}
+  </>)
 }
 
 export function ProductItem({imageURL,price,title,id}:Props) {
@@ -38,7 +46,7 @@ export function ProductItem({imageURL,price,title,id}:Props) {
         </div>
         {/* <p className="text-center"><span className="capitalize">category: </span>{category}</p> */}
         <div className="mt-auto py-3">
-          <Button onAction={handleClick} icon={<ShoppingCart/>} textButton="Add to cart"/>    
+          <Button onAction={handleClick} children={<ButtonChildren text="Add to cart" icon={<ShoppingCart/>}/>}/>    
         </div>
       </article>
   )

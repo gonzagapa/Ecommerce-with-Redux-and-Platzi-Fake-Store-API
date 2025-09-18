@@ -1,40 +1,75 @@
-import { CircleCheckBig } from 'lucide-react';
-import { CircleX } from 'lucide-react';
+import { CircleCheck ,CircleX  } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useState } from 'react';
 
-type IconModalType = "success"| "error";
+type ModalColors = {
+  error:string,
+  success:string,
+  warning:string,
+  neutral:string
+}
 
 type Props = {
     title:string,
     text:string,
-    icon:IconModalType,
-    isVisible?:boolean
+    isVisible?:boolean,
+    type:keyof ModalColors
 }
 
-export function Modal({title,text,icon, isVisible}:Props) {
+
+const modalColors:ModalColors = {
+  error:"bg-red-300",
+  success:"bg-green-300",
+  warning:"bg-yellow-300",
+  neutral:"bg-slate-200"
+}
+
+const getBgModelByType = (type:keyof ModalColors)=>{
+  return modalColors[type];
+}
+const RenderIconModal = ({type}:Pick<Props,"type">)=>{
+
+    if(type ==="error"){
+        return <CircleX className='text-error'/>
+    }
+    if(type == "warning"){
+        return; //todo icon for warning
+    }
+    if(type == "neutral"){
+        return;
+    }
+    return (<CircleCheck className='text-green-400'/>)
+}
+
+export function Modal({title,text,isVisible,type}:Props) {
 
     const [visibility, setVisibility] = useState(isVisible ?? true);
 
     const handleVisibility = ()=>{
-        //console.log("visibility");
         setVisibility(false);
     }
 
     if(visibility == false) {
-        //console.log("nada"); 
         return ;
     }
   return (
-    <div className="bg-baby rounded-md min-w-[12.5rem] absolute top-2 left-1/2 -translate-x-1/2 animate-fade-in-scale text-center p-8">
-        <div className='relative'>
-        <button 
-        onClick={handleVisibility}
-        className='text-gray-500 hover:text-error cursor-pointer absolute -right-4 -top-7'><CircleX/></button>
-        <p className={`${icon === "success" ? 
-            'text-green-600':"text-red-600" } mb-2.5 flex text-xl gap-2  font-semibold`}>{icon === "success" ? <CircleCheckBig />:<CircleX/>} {title}</p>
-        <hr />
-        <p className='text-black'>{text}</p>
+    <div className={`${getBgModelByType(type)}  rounded-md w-[250px] md:w-sm absolute top-2 left-1/2 -translate-x-1/2 animate-fade-in-scale pt-4 px-4 pb-8 shadow-md shadow-slate-300 dark:shadow-slate-600`}>
+        <div className='flex justify-between items-center mb-5'>
+            <div className='flex gap-2 items-center'>
+                <div className='size-6'>
+                    <RenderIconModal type={type}/>
+                </div>
+                <p className={`flex text-xl  md:text-3xl gap-2 text-black  font-semibold`}>
+                        {title}
+                </p>
+            </div>
+            <button 
+            onClick={handleVisibility}
+            className=' text-black hover:text-error cursor-pointer'>
+               <X className='size-6'/>
+            </button>
         </div>
-    </div>
+        <p className='text-black text-xl'>{text}</p>
+        </div>
   )
 }

@@ -32,7 +32,7 @@ export function CartItem({imageURL,price,title,id,amount}:Props) {
 
   return (
     <article data-id={id} 
-    className="dark:border-baby  dark:border-2 rounded-md p-2.5 max-w-lg flex items-center gap-4 w-full relative shadow-md shadow-gray-500">
+    className="rounded-md p-2.5 max-w-lg flex items-center gap-4 w-full relative shadow-md dark:shadow-gray-600 shadow-gray-500">
         <picture className="object-cover w-11/12 max-w-50 overflow-hidden rounded-md">
             <img src={imageURL} alt={title} className="size-full" width={120} height={120}/>
         </picture>
@@ -42,10 +42,10 @@ export function CartItem({imageURL,price,title,id,amount}:Props) {
                 <p className="md:text-base  text-gray-400">{currency.format(price)}</p>
                 <p className="md:text-xl font-bold">{currency.format(price*amount)}</p>
             </div>
-            <div className="flex gap-1 items-center">
-                <Button onAction={handleIncreseAmount} textButton="" icon={<Plus className="size-6 md:size-8" />} style="size-8 md:size-10 flex items-center hover:text-black"/>
+            <div className="flex gap-1 items-center justify-around">
+                <Button onAction={handleIncreseAmount} children={<Plus className="size-6 md:size-8" />} style="size-8 md:size-10 flex items-center hover:text-black"/>
                 <p className="border-highlight text-font-light text-center font-semibold border-2 w-[4ch]  p-1 rounded-md dark:text-baby">{amount}</p>
-                <Button onAction={handleDecreaseAmount} textButton="" icon={<Minus className="size-6 md:size-8" />} style="size-8 md:size-10 flex items-center hover:text-black"/>
+                <Button onAction={handleDecreaseAmount}  children={<Minus className="size-6 md:size-8" />} style="size-8 md:size-10 flex items-center hover:text-black"/>
             </div>
         </section>
         <button onClick={handleClick} className="absolute -top-3 -right-3 cursor-pointer  hover:text-black size-6 md:size-8 rounded-full bg-highlight text-baby flex justify-center items-center"><X className="size-4 md:size-5"/></button>

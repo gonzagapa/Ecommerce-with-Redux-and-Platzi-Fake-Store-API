@@ -29,9 +29,9 @@ export function PaginationButtons() {
     }
 
     return (
-    <footer className="flex gap-3 mt-10 pb-4">
-        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonPreviousDisabled} textButton="" icon={<ArrowLeft/>} onAction={handlePrevious}/>
-        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonNextDisabled} textButton="" icon={<ArrowRight/>} onAction={handleNext}/>
+    <footer className="flex justify-between gap-3 mt-10 pb-4 px-10">
+        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonPreviousDisabled} children={<ArrowLeft/>} onAction={handlePrevious}/>
+        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonNextDisabled} children={<ArrowRight/>} onAction={handleNext}/>
     </footer>
   )
 }

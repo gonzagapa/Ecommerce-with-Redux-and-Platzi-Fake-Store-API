@@ -24,7 +24,7 @@ export function CartOrder() {
             <p className="dark:text-gray-400 text-gray-600 font-light md:text-xl capitalize flex">Shipping <span className=" dark:text-baby text-font-light ml-auto">Free</span></p>
             <p className="dark:text-gray-400  text-gray-600 font-light md:text-xl capitalize flex">Total <span className="font-semibold dark:text-baby text-font-light ml-auto">{currency.format(total)}</span></p>
         </div>
-        <Button onAction={handlePayment} textButton="Proceed for Payment" style="w-full mt-5 font-semibold"/>
+        <Button onAction={handlePayment} children={<p>Proceed to payment</p>} style="w-full mt-5 font-semibold"/>
     </aside>
   )
 }

@@ -41,11 +41,11 @@ export function ProductItem({imageURL,price,title,id}:Props) {
             <img loading="lazy" src={imageURL} alt={`image of ${title}`} className="size-full object-cover" width={250} height={250}/>
         </div>
         <div className="flex gap-2 items-center justify-between px-3">
-          <p className="font-medium md:text-lg text-left line-clamp-2 max-w-[12ch]">{title}</p>
+          <p className="font-semibold text-lg text-left line-clamp-2 max-w-[12ch]">{title}</p>
           <p className="text-lg font-bold md:text-xl text-center">{currency.format(price)}</p>
         </div>
         {/* <p className="text-center"><span className="capitalize">category: </span>{category}</p> */}
-        <div className="mt-auto py-3">
+        <div className="mx-auto py-3">
           <Button onAction={handleClick} children={<ButtonChildren text="Add to cart" icon={<ShoppingCart/>}/>}/>    
         </div>
       </article>

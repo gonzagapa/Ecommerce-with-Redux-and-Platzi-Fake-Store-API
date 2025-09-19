@@ -69,7 +69,7 @@ export function Modal({title,text,isVisible,type}:Props) {
                <X className='size-6'/>
             </button>
         </div>
-        <p className='text-black text-xl'>{text}</p>
+        <p className='text-black text-xl leading-1.5'>{text}</p>
         </div>
   )
 }

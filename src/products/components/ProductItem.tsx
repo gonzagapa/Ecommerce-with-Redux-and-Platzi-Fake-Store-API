@@ -4,6 +4,7 @@ import { currency } from "../../shared/utility";
 import { useDispatch } from "react-redux";
 import { addItemToCart, type CartProduct } from "../../cart";
 import type React from "react";
+import { useRefSliderContext } from "../hooks/useRefSliderContext";
 
 type Props = {
     category:string
@@ -22,6 +23,8 @@ const ButtonChildren = ({text,icon}:{text:string,icon:React.ReactNode})=>{
 
 export function ProductItem({imageURL,price,title,id}:Props) {
 
+  const {ModalOpen} =useRefSliderContext()
+
   const dispatch = useDispatch();
 
   const handleClick = ()=>{
@@ -33,9 +36,10 @@ export function ProductItem({imageURL,price,title,id}:Props) {
       imageURL:imageURL
     }
     dispatch(addItemToCart(newProduct))
+    ModalOpen(true);
   }
 
-  return (
+  return (<>
     <article className=" shadow-md shadow-slate-300 dark:shadow-slate-700  rounded-md  flex flex-col gap-4 text-font-light  dark:text-baby">
         <div className="size-min-[250px] overflow-hidden rounded-t-md">
             <img loading="lazy" src={imageURL} alt={`image of ${title}`} className="size-full object-cover" width={250} height={250}/>
@@ -49,6 +53,7 @@ export function ProductItem({imageURL,price,title,id}:Props) {
           <Button onAction={handleClick} children={<ButtonChildren text="Add to cart" icon={<ShoppingCart/>}/>}/>    
         </div>
       </article>
+  </>
   )
 }
 

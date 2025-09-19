@@ -14,6 +14,7 @@ export function ProductList() {
   const {refElement,setHasProducts} = useRefSliderContext();
 
   const {data:products , isFetching} = useGetAllProductsQuery(queryParams);
+  
 
   if(isFetching) {
       setHasProducts(true)
@@ -29,18 +30,18 @@ export function ProductList() {
     )
   }
   return (
-   <ProductListContainerLayout ref={refElement}>
-     {
-       products?.map((product) => (
-         <ProductItem 
-         id={product.id}
-         key={product.id}
-         imageURL={product.images[0]} 
-         category={product.category.name}
-         price={product.price} 
-         title={product.title}/>
-       ))
-     }
-   </ProductListContainerLayout>
+    <ProductListContainerLayout ref={refElement}>
+      {
+        products?.map((product) => (
+          <ProductItem 
+          id={product.id}
+          key={product.id}
+          imageURL={product.images[0]} 
+          category={product.category.name}
+          price={product.price} 
+          title={product.title}/>
+        ))
+      }
+    </ProductListContainerLayout>
   )
 }

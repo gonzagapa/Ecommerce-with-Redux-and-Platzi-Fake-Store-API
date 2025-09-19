@@ -1,3 +1,5 @@
+import { Modal } from "../../shared/components/Modal"
+import { useRefSliderContext } from "../hooks/useRefSliderContext"
 
 
 type Props ={
@@ -5,10 +7,17 @@ type Props ={
     ref:React.RefObject<HTMLElement | null>| null
 }
 export function ProductListContainerLayout({children,ref}:Props) {
+  const {isVisible,ModalOpen}= useRefSliderContext()
 
   return (
-    <section ref={ref}  className="grid md:col-span-2 md:grid-cols-2 lg:col-span-5 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full">
-        {children}
-    </section>
+      <section ref={ref}  className="grid md:col-span-2 md:grid-cols-2 lg:col-span-5 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full">
+          {children}
+        <Modal
+        isVisible={isVisible}
+        onClose={()=> ModalOpen(false)}
+        type="success" 
+        style="top-auto bottom-2" 
+        title="Product added" />
+      </section>
   )
 }

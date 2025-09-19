@@ -1,6 +1,5 @@
 import { CircleCheck ,CircleX  } from 'lucide-react';
 import { X } from 'lucide-react';
-import { useState } from 'react';
 
 type ModalColors = {
   error:string,
@@ -11,9 +10,11 @@ type ModalColors = {
 
 type Props = {
     title:string,
-    text:string,
-    isVisible?:boolean,
     type:keyof ModalColors
+    text?:string,
+    style?:string
+    isVisible?:boolean,
+    onClose:()=>void
 }
 
 
@@ -38,38 +39,30 @@ const RenderIconModal = ({type}:Pick<Props,"type">)=>{
     if(type == "neutral"){
         return;
     }
-    return (<CircleCheck className='text-green-400'/>)
+    return (<CircleCheck className='text-green-700'/>)
 }
 
-export function Modal({title,text,isVisible,type}:Props) {
+export function Modal({title,text,type,style,isVisible, onClose}:Props) {
 
-    const [visibility, setVisibility] = useState(isVisible ?? true);
 
-    const handleVisibility = ()=>{
-        setVisibility(false);
-    }
-
-    if(visibility == false) {
-        return ;
-    }
   return (
-    <div className={`${getBgModelByType(type)}  rounded-md w-[250px] md:w-sm absolute top-2 left-1/2 -translate-x-1/2 animate-fade-in-scale pt-4 px-4 pb-8 shadow-md shadow-slate-300 dark:shadow-slate-600`}>
+    <div className={`${getBgModelByType(type)}  rounded-md w-[250px] md:w-sm fixed top-2 left-1/2 -translate-x-1/2 animate-fade-in-scale pt-4 px-4 shadow-md shadow-slate-600 dark:shadow-slate-500 ${isVisible ? 'visible' : "invisible"} ${style}`}>
         <div className='flex justify-between items-center mb-5'>
             <div className='flex gap-2 items-center'>
                 <div className='size-6'>
                     <RenderIconModal type={type}/>
                 </div>
-                <p className={`flex text-xl  md:text-3xl gap-2 text-black  font-semibold`}>
+                <p className={`flex text-xl  md:text-xl gap-2 text-black  font-semibold`}>
                         {title}
                 </p>
             </div>
             <button 
-            onClick={handleVisibility}
+            onClick={onClose}
             className=' text-black hover:text-error cursor-pointer'>
                <X className='size-6'/>
             </button>
         </div>
-        <p className='text-black text-xl leading-1.5'>{text}</p>
+        {text && <p className='text-black text-xl leading-1.5 mb-8'>{text}</p>}
         </div>
   )
 }

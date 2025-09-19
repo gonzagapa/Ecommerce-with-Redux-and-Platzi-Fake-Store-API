@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { ThemeContext, type ThemeMode } from "./ThemeContext"
+import { retrieveThemeFromStorage, saveThemeInStorage} from "./localStorageTheme"
 
 type Props = {
     children:React.ReactNode
@@ -7,7 +8,8 @@ type Props = {
 
 export function ThemeProvider({children}:Props) {
     const [theme,setTheme] = useState<ThemeMode>(()=>{
-        if(window.matchMedia("(prefers-color-scheme: dark)").matches){
+        if(window.matchMedia("(prefers-color-scheme: dark)").matches 
+        && retrieveThemeFromStorage() === "dark"){
             return "dark"
         }
         return "light"
@@ -23,7 +25,14 @@ export function ThemeProvider({children}:Props) {
     },[theme]) 
 
     const handleTogglingTheme = ()=>{
-        setTheme((prevTheme) => prevTheme === "light" ? "dark" : "light")
+        setTheme((prevTheme) => {
+            if(prevTheme === "light"){
+                saveThemeInStorage("dark");
+                return "dark";
+            }
+            saveThemeInStorage("light")
+            return "light"
+        })
     }
 
   return (

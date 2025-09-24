@@ -3,19 +3,22 @@ import { Button } from "../../shared/components/Buttons";
 import { currency } from "../../shared/utility";
 import type { RootState } from "../../app";
 import { resetCart } from "../store/cartSlice";
+import { useModalContext } from "../../shared/hooks/useModalContext";
+import { Modal } from "../../shared/components/Modal";
 
 
 export function CartOrder() {
     const {cartProducts} = useSelector((s:RootState) => s.cart);
+    const {ModalOpen, isVisible}= useModalContext()
     const dispatch = useDispatch();
 
     const handlePayment = ()=>{
-        //todo:fire a modal to confirm process
         dispatch(resetCart())
+        ModalOpen(true);
     }
 
     const total = cartProducts.reduce((acc,currentItem) => acc + (currentItem.amount * currentItem.price),0)
-  return (
+  return (<>
     <aside className="p-3 w-10/12 max-w-md  mx-auto align mt-5 lg:mt-10 lg:mx-0 lg:col-span-4 justify-self-center ">
         <h2 className="font-semibold mb-5 text-2xl md:text-4xl lg:w-[5ch]">Order Summary</h2>
         <div className="border-b-2 dark:border-white border-highlight mb-5"></div>
@@ -26,5 +29,10 @@ export function CartOrder() {
         </div>
         <Button onAction={handlePayment} children={<p>Proceed to payment</p>} style="w-full mt-5 font-semibold"/>
     </aside>
+    <Modal isVisible={isVisible} 
+      title="Purchase made successfully" 
+      onClose={()=> ModalOpen(false)} 
+      type="success"  style="top-auto bottom-2"/>
+  </>
   )
 }

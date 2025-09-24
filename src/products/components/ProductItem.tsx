@@ -4,7 +4,7 @@ import { currency } from "../../shared/utility";
 import { useDispatch } from "react-redux";
 import { addItemToCart, type CartProduct } from "../../cart";
 import type React from "react";
-import { useRefSliderContext } from "../hooks/useRefSliderContext";
+import { useModalContext } from "../../shared/hooks/useModalContext";
 
 type Props = {
     category:string
@@ -23,7 +23,7 @@ const ButtonChildren = ({text,icon}:{text:string,icon:React.ReactNode})=>{
 
 export function ProductItem({imageURL,price,title,id}:Props) {
 
-  const {ModalOpen} =useRefSliderContext()
+  const {ModalOpen} = useModalContext()
 
   const dispatch = useDispatch();
 

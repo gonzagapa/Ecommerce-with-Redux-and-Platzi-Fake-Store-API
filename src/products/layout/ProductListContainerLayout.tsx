@@ -1,5 +1,5 @@
 import { Modal } from "../../shared/components/Modal"
-import { useRefSliderContext } from "../hooks/useRefSliderContext"
+import { useModalContext } from "../../shared/hooks/useModalContext"
 
 
 type Props ={
@@ -7,7 +7,7 @@ type Props ={
     ref:React.RefObject<HTMLElement | null>| null
 }
 export function ProductListContainerLayout({children,ref}:Props) {
-  const {isVisible,ModalOpen}= useRefSliderContext()
+  const {isVisible,ModalOpen} = useModalContext()
 
   return (
       <section ref={ref}  className="grid md:col-span-2 md:grid-cols-2 lg:col-span-5 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full">

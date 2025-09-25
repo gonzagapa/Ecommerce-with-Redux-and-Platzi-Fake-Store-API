@@ -10,7 +10,7 @@ export function ProductListContainerLayout({children,ref}:Props) {
   const {isVisible,ModalOpen} = useModalContext()
 
   return (
-      <section ref={ref}  className="grid md:col-span-2 md:grid-cols-2 lg:col-span-5 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full">
+      <section ref={ref}  className="grid md:col-span-2 md:grid-cols-2 md:auto-rows-min lg:col-span-5 lg:grid-cols-3 xl:grid-cols-4 gap-3 w-full">
           {children}
         <Modal
         isVisible={isVisible}
@@ -18,6 +18,7 @@ export function ProductListContainerLayout({children,ref}:Props) {
         type="success" 
         style="top-auto bottom-2" 
         title="Product added" />
+        
       </section>
   )
 }

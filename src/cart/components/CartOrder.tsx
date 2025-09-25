@@ -32,7 +32,7 @@ export function CartOrder() {
     <Modal isVisible={isVisible} 
       title="Purchase made successfully" 
       onClose={()=> ModalOpen(false)} 
-      type="success"  style="top-auto bottom-2"/>
+      type="success"   style="top-auto bottom-2"/>
   </>
   )
 }

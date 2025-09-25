@@ -43,10 +43,8 @@ const RenderIconModal = ({type}:Pick<Props,"type">)=>{
 }
 
 export function Modal({title,text,type,style,isVisible, onClose}:Props) {
-
-
   return (
-    <div className={`${getBgModelByType(type)}  rounded-md w-[250px] md:w-sm fixed top-2 left-1/2 -translate-x-1/2 animate-fade-in-scale pt-4 px-4 shadow-md shadow-slate-600 dark:shadow-slate-500 ${isVisible ? 'visible' : "invisible"} ${style}`}>
+    <div className={`${getBgModelByType(type)}  rounded-md w-[250px] md:w-sm fixed top-2 left-1/2 -translate-x-1/2 pt-4 px-4 shadow-md shadow-slate-600 dark:shadow-slate-500 animate__animated animate__fadeIn ${isVisible ? 'visible' : "invisible"} ${style}`}>
         <div className='flex justify-between items-center mb-5'>
             <div className='flex gap-2 items-center'>
                 <div className='size-6'>

@@ -14,8 +14,8 @@ export function HomePage() {
                 <ModalContextProvider>
                   <ProductList/>
                 </ModalContextProvider>
+                <PaginationButtons/>
               </section>
-              <PaginationButtons/>
           </RefSliderProvider>
     </main>
   )

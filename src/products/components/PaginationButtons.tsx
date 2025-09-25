@@ -29,9 +29,11 @@ export function PaginationButtons() {
     }
 
     return (
-    <footer className="flex justify-between gap-3 mt-10 pb-4 px-10">
-        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonPreviousDisabled} children={<ArrowLeft/>} onAction={handlePrevious}/>
-        <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonNextDisabled} children={<ArrowRight/>} onAction={handleNext}/>
-    </footer>
+        <div className="md:col-start-2 md:col-span-full">
+            <footer className="flex justify-between gap-3 mt-10 pb-4 px-10">
+                <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonPreviousDisabled} children={<ArrowLeft/>} onAction={handlePrevious}/>
+                <Button style="w-20 disabled:cursor-not-allowed disabled:hover:text-baby" isDisabled={buttonNextDisabled} children={<ArrowRight/>} onAction={handleNext}/>
+            </footer>
+        </div>
   )
 }

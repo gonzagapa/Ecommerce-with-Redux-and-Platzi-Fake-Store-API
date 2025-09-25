@@ -3,6 +3,7 @@ import { HomePage } from "../pages";
 import { PrivatePages } from "../pages/PrivatePages";
 import { AboutPage } from "../pages/AboutPage";
 import { ErrorPage } from "../../app/page/ErrorPage";
+import { ProductPage } from "../pages/ProductPage";
 
 export function ProductRoutes() {
   return (
@@ -10,6 +11,7 @@ export function ProductRoutes() {
       <Route element={<PrivatePages/>}>
         <Route index element={<HomePage/>}/>
         <Route path="about" element={<AboutPage/>}/>
+        <Route path="product/:id" element={<ProductPage/>}/>
 
         <Route path="/*" element={<ErrorPage/>}/>
       </Route>

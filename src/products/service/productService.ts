@@ -17,6 +17,14 @@ export const ProductEcommerceApi = createApi({
             ),
             
         }),
+        getProductById:builder.query<ProductResponse,number>({
+            query:(id)=>(
+                {
+                    url:`/products/${id}`,
+                    method:"GET"
+                }
+            )
+        }),
         getCategories:builder.query<Category[],void>({
             query:()=>({
                 url:"/categories",
@@ -31,4 +39,4 @@ export const ProductEcommerceApi = createApi({
 
 })
 
-export const {useGetAllProductsQuery, useGetCategoriesQuery} = ProductEcommerceApi
+export const {useGetAllProductsQuery, useGetCategoriesQuery, useGetProductByIdQuery} = ProductEcommerceApi

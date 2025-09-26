@@ -54,7 +54,7 @@ export function ProductItem({imageURL,price,title,id, category}:Props) {
         </Link>
           <p className="text-sm absolute top-1 left-0 font-medium"><span className="capitalize text-white bg-slate-800 dark:bg-baby dark:text-black rounded-lg p-1">{category}</span></p>
         <div className="my-auto flex justify-between items-center px-2 py-3">
-          <Link to={`product/${id}`} className="hover:text-highlight hover:cursor-pointer text-sm underline"><SquareArrowOutUpRight className="size-5"/></Link>
+          <Link to={`product/${id}`} className="hover:text-highlight hover:cursor-pointer text-sm underline"><SquareArrowOutUpRight className="size-5" aria-label="Know more about the product"/></Link>
           <Button style="p-1 text-sm" onAction={handleClick} children={<ButtonChildren text="Add to cart" icon={<ShoppingCart className="size-5"/>}/>}/>    
         </div>
       </article>

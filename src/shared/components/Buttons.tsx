@@ -1,3 +1,5 @@
+import React from "react"
+
 interface ButtonProps {
     children:React.ReactNode
     onAction?: ()=>void 
@@ -5,7 +7,7 @@ interface ButtonProps {
     style?:string
 }
 
-export const Button = ({onAction, isDisabled, style,children}:ButtonProps)=>{
+export const Button = React.memo( ({onAction, isDisabled, style,children}:ButtonProps)=>{
     return (
         <button
         disabled={isDisabled}
@@ -16,5 +18,5 @@ export const Button = ({onAction, isDisabled, style,children}:ButtonProps)=>{
             {children}
         </button>
     )
-}
+})
 

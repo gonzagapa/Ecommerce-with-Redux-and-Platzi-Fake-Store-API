@@ -4,7 +4,6 @@ import { CartItem } from "./CartItem";
 import NoProducts from "./NoProducts";
 
 
-
 export function CartList() {
   const {cartProducts:products} = useSelector((s:RootState) => s.cart );
   return (

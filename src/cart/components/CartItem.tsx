@@ -1,33 +1,17 @@
 import { useDispatch } from "react-redux";
-import { Button } from "../../shared/components/Buttons";
 import { currency } from "../../shared/utility"
-import { modifiedItemAmount, removeItemFromCart, type CartProduct } from "../store/cartSlice";
+import {removeItemFromCart, type CartProduct } from "../store/cartSlice";
 
-import { Plus,Minus,X   } from 'lucide-react';
-import { useEffect } from "react";
+import {X   } from 'lucide-react';
+import { ButtonAmountProduct } from "../../shared/components";
 
 interface Props extends CartProduct {}
 
 export function CartItem({imageURL,price,title,id,amount}:Props) {
    const dispatch =  useDispatch();
 
-   useEffect(()=>{
-        if(amount === 0){
-            dispatch(removeItemFromCart({id}))
-        }
-   },[amount])
-
-
    const handleClick = ()=>{
     dispatch(removeItemFromCart({id}))
-   }
-
-   const handleIncreseAmount = ()=>{
-    dispatch(modifiedItemAmount({amount:1, id}))
-   }
-
-   const handleDecreaseAmount = ()=>{
-    dispatch(modifiedItemAmount({amount:-1,id}));
    }
 
   return (
@@ -42,11 +26,7 @@ export function CartItem({imageURL,price,title,id,amount}:Props) {
                 <p className="md:text-base  text-gray-400">{currency.format(price)}</p>
                 <p className="md:text-xl font-bold">{currency.format(price*amount)}</p>
             </div>
-            <div className="flex gap-1 items-center justify-around">
-                <Button onAction={handleIncreseAmount} children={<Plus className="size-6 md:size-8" />} style="size-8 md:size-10 flex items-center hover:text-black"/>
-                <p className="border-highlight text-font-light text-center font-semibold border-2 w-[4ch]  p-1 rounded-md dark:text-baby">{amount}</p>
-                <Button onAction={handleDecreaseAmount}  children={<Minus className="size-6 md:size-8" />} style="size-8 md:size-10 flex items-center hover:text-black"/>
-            </div>
+            <ButtonAmountProduct amount={amount} id={id}/>
         </section>
         <button onClick={handleClick} className="absolute -top-3 -right-3 cursor-pointer  hover:text-black size-6 md:size-8 rounded-full bg-highlight text-baby flex justify-center items-center"><X className="size-4 md:size-5"/></button>
     </article>

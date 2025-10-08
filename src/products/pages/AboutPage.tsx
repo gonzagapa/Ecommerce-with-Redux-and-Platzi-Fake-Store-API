@@ -2,6 +2,8 @@
 
 export function AboutPage() {
   return (
-    <div>AboutPage</div>
+    <div className="min-h-svh">
+
+    </div>
   )
 }

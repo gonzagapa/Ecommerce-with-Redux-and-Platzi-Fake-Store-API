@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import { useDispatch } from "react-redux";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "../../shared/components/Buttons";
 import { currency } from "../../shared/utility";
 import { addItemToCart, type CartProduct } from "../../cart";
 import type { ProductResponse } from "../service/types";
+import { ModalContext } from "../../shared/context/ModalContext";
+import { Modal } from "../../shared/components/Modal";
 
 interface Props {
     productData:ProductResponse
@@ -15,6 +17,7 @@ function RenderProductPage({productData}:Props) {
 
         const dispatch = useDispatch();
         const [currentImage,setCurrentImage] = useState(productData?.images[0])
+        const {ModalOpen,isVisible} = use(ModalContext)
         
 
         const handleBuyProduct = ()=>{
@@ -26,10 +29,11 @@ function RenderProductPage({productData}:Props) {
                 imageURL:productData.images[0]
             }
             dispatch(addItemToCart(newProduct))
+            ModalOpen(true)
         }
 
     return (
-        <main className="text-black pt-6 px-4">
+        <main className="text-black pt-6 px-4 min-h-screen">
                 <div className="grid gap-3 md:grid-cols-2 max-w-6xl mx-auto">
                     {/* Cauresel */}
                     <section className="flex justify-center flex-col items-center">
@@ -61,6 +65,12 @@ function RenderProductPage({productData}:Props) {
                             </div>} style="max-w-sm w-9/11 mx-auto"/>
                     </section>
                 </div>
+                <Modal
+                        isVisible={isVisible}
+                        onClose={()=> ModalOpen(false)}
+                        type="success" 
+                        style="top-auto bottom-2" 
+                        title="Product added" />
             </main>
     )
 }

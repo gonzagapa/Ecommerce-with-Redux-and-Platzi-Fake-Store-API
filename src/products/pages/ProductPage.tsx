@@ -2,6 +2,7 @@ import {Navigate, useParams } from "react-router"
 import RenderProductPage from "./RenderProductPage";
 import { useGetProductByIdQuery } from "../service/productService";
 import { LoadingLayout } from "../../shared/components/LoadingLayout";
+import { ModalContextProvider } from "../../shared/context/ModalContext";
 
 
 
@@ -21,8 +22,10 @@ export function ProductPage() {
     if(!productData || isError){
             return <div>Product Info not found</div>
         }
-        
-    return <RenderProductPage productData={productData}/>
+
+    return (<ModalContextProvider>
+            <RenderProductPage productData={productData}/>
+            </ModalContextProvider> )
     
 
 }

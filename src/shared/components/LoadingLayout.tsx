@@ -1,7 +1,7 @@
-import { LoadingSpinner } from "../../shared/components";
+import { LoadingSpinner } from ".";
 
 
-
+//todo:change name 
 export function LoadingLayout() {
   return (
     <div className="grid bg-slate-400 dark:bg-slate-700 opacity-60 justify-center content-center absolute inset-0">

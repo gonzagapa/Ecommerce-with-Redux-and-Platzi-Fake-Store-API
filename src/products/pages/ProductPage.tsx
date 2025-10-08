@@ -1,5 +1,7 @@
 import {Navigate, useParams } from "react-router"
 import RenderProductPage from "./RenderProductPage";
+import { useGetProductByIdQuery } from "../service/productService";
+import { LoadingLayout } from "../../shared/components/LoadingLayout";
 
 
 
@@ -10,9 +12,17 @@ export function ProductPage() {
         return <Navigate to={'/'}/>
     }
 
-    //todo:aqui hacer el fetch de los datos
+    const {data:productData, isError, isFetching}= useGetProductByIdQuery(+id)
 
-    return <RenderProductPage id={+id}/>
+    if(isFetching){
+        return <LoadingLayout/>
+    }
+
+    if(!productData || isError){
+            return <div>Product Info not found</div>
+        }
+        
+    return <RenderProductPage productData={productData}/>
     
 
 }

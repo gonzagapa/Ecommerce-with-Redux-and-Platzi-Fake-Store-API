@@ -1,4 +1,4 @@
-import { LoadingLayout } from "../layout/LoadingLayout";
+import { LoadingLayout } from "../../shared/components/LoadingLayout";
 import { ProductListContainerLayout } from "../layout/ProductListContainerLayout";
 import { ProductShadowItem } from "./ProductShadowItem";
 

@@ -1,28 +1,26 @@
-import { useCallback, useState } from "react";
-import { useGetProductByIdQuery } from "../service/productService";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { ShoppingCart } from "lucide-react";
 import { Button } from "../../shared/components/Buttons";
 import { currency } from "../../shared/utility";
 import { addItemToCart, type CartProduct } from "../../cart";
-import { LoadingSpinner } from "../../shared/components";
+import type { ProductResponse } from "../service/types";
+
+interface Props {
+    productData:ProductResponse
+}
 
 
+function RenderProductPage({productData}:Props) {
 
-function RenderProductPage({id}:{id:number}) {
-
-        const {data:productData, isError, isFetching}= useGetProductByIdQuery(id)
         const dispatch = useDispatch();
         const [currentImage,setCurrentImage] = useState(productData?.images[0])
         
-        if(!productData || isError){
-            return <div>Product Info not found</div>
-        }
 
         const handleBuyProduct = ()=>{
             const newProduct:CartProduct = {
                 amount:1, //todo:modified
-                id:id,
+                id:productData.id,
                 title:productData.title,
                 price:productData.price,
                 imageURL:productData.images[0]
@@ -33,14 +31,10 @@ function RenderProductPage({id}:{id:number}) {
     return (
         <main className="text-black pt-6 px-4">
                 <div className="grid gap-3 md:grid-cols-2 max-w-6xl mx-auto">
+                    {/* Cauresel */}
                     <section className="flex justify-center flex-col items-center">
-                        <picture className="block overflow-hidden rounded-xl shadow-md shadow-slate-500 size-[200px] md:size-[450px]">
-                            {isFetching ? 
-                            <LoadingSpinner size="40" color="bg-blue-500" thickness=""/>
-                                :
+                        <picture className="block overflow-hidden rounded-xl shadow-md shadow-slate-500 size-[200px] sm:size-[300px] md:size-[450px]">
                             <img className="size-full object-cover" src={`${currentImage}`} alt={`images of ${productData?.slug}`} />
-                            }
-                            
                         </picture>
                         <div className="flex justify-evenly gap-3 mt-3 ">
                             {productData?.images.map((namePhoto,index)=>(
@@ -52,7 +46,7 @@ function RenderProductPage({id}:{id:number}) {
                             ))}
                         </div>
                     </section>
-                    <section className="flex flex-col gap-8 w-[50ch] mx-auto dark:text-baby">
+                    <section className="flex flex-col gap-8 max-w-[50ch] mx-auto dark:text-baby">
                         <div className="pb-3 border-b-2 border-slate-200 dark:border-slate-200">
                             <h1 className="text-3xl md:text-5xl text-center font-bold ">{productData?.title}</h1>
                             <p className="mt-8 leading-7 font-light sm:text-center md:text-left">{productData?.description}</p>

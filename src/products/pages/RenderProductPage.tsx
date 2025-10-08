@@ -1,11 +1,12 @@
 import { use, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ShoppingCart } from "lucide-react";             
+import { ArrowLeft, ShoppingCart } from "lucide-react";             
 import { currency } from "../../shared/utility";
 import { Button, Modal } from "../../shared/components";
 import { addItemToCart, type CartProduct } from "../../cart";
 import type { ProductResponse } from "../service/types";
 import { ModalContext } from "../../shared/context/ModalContext";
+import { Link } from "react-router";
 
 interface Props {
     productData:ProductResponse
@@ -33,7 +34,14 @@ function RenderProductPage({productData}:Props) {
 
     return (
         <main className="text-black pt-6 px-4 min-h-screen">
+
                 <div className="grid gap-3 md:grid-cols-2 max-w-6xl mx-auto">
+                    <div className="col-span-full mb-10  md:pl-14">
+                        <Link to={"/"} className="mx-auto md:mx-0 border-highlight group dark:hover:border-white hover:border-blue-400 transition-all duration-150 flex gap-2 border-2 rounded-md p-2 w-[180px] dark:text-white">
+                            <ArrowLeft className="group-hover:text-blue-400  text-highlight dark:group-hover:text-white transition-all duration-150"/>
+                            <span>Back to home</span>
+                        </Link>
+                    </div>
                     {/* Cauresel */}
                     <section className="flex justify-center flex-col items-center">
                         <picture className="block overflow-hidden rounded-xl shadow-md shadow-slate-500 size-[200px] sm:size-[300px] md:size-[450px]">

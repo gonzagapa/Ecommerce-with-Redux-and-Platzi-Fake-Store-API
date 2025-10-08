@@ -23,9 +23,10 @@ export function ProductPage() {
             return <div>Product Info not found</div>
         }
 
-    return (<ModalContextProvider>
-            <RenderProductPage productData={productData}/>
-            </ModalContextProvider> )
+    return (
+    <ModalContextProvider>
+        <RenderProductPage productData={productData}/>
+    </ModalContextProvider> )
     
 
 }

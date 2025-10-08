@@ -1,12 +1,11 @@
 import { use, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ShoppingCart } from "lucide-react";
-import { Button } from "../../shared/components/Buttons";
+import { ShoppingCart } from "lucide-react";             
 import { currency } from "../../shared/utility";
+import { Button, Modal } from "../../shared/components";
 import { addItemToCart, type CartProduct } from "../../cart";
 import type { ProductResponse } from "../service/types";
 import { ModalContext } from "../../shared/context/ModalContext";
-import { Modal } from "../../shared/components/Modal";
 
 interface Props {
     productData:ProductResponse

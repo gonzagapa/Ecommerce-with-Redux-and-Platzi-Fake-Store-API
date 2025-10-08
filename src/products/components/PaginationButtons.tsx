@@ -1,8 +1,8 @@
+import { ArrowRight } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../shared/components/Buttons";
 import { useRefSliderContext } from "../hooks/useRefSliderContext";
-import { ArrowRight } from 'lucide-react';
-import { ArrowLeft } from 'lucide-react';
 import type { RootState } from "../../app";
 import { changePaginationParams } from "../store/productSlice";
 

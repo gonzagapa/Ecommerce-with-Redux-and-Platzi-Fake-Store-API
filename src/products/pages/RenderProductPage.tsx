@@ -34,7 +34,6 @@ function RenderProductPage({productData}:Props) {
 
     return (
         <main className="text-black pt-6 px-4 min-h-screen">
-
                 <div className="grid gap-3 md:grid-cols-2 max-w-6xl mx-auto">
                     <div className="col-span-full mb-10  md:pl-14">
                         <Link to={"/"} className="mx-auto md:mx-0 border-highlight group dark:hover:border-white hover:border-blue-400 transition-all duration-150 flex gap-2 border-2 rounded-md p-2 w-[180px] dark:text-white">
